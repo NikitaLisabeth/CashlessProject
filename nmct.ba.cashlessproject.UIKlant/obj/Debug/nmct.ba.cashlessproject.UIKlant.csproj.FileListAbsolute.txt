@@ -1,0 +1,43 @@
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\WPF Template NMCT1.exe.config
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\WPF Template NMCT1.exe
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\WPF Template NMCT1.pdb
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\GalaSoft.MvvmLight.dll
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\GalaSoft.MvvmLight.Extras.dll
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\System.Net.Http.Extensions.dll
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\System.Net.Http.Primitives.dll
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\GalaSoft.MvvmLight.pdb
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\GalaSoft.MvvmLight.xml
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\System.Net.Http.Extensions.xml
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\bin\Debug\System.Net.Http.Primitives.xml
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\nmct.ba.cashlessproject.UIKlant.csproj.App.config
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\View\MainWindow.g.cs
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\View\PageOne.g.cs
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\App.g.cs
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\WPF Template NMCT1_MarkupCompile.cache
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\WPF Template NMCT1_MarkupCompile.lref
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\View\MainWindow.baml
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\View\PageOne.baml
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\WPF Template NMCT1.g.resources
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\nmct.ba.cashlessproject.UIKlant.Properties.Resources.resources
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\nmct.ba.cashlessproject.UIKlant.csproj.GenerateResource.Cache
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\WPF Template NMCT1.exe
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\WPF Template NMCT1.pdb
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\View\PageGegevens.g.cs
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\View\PageGegevens.baml
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\View\PageOpladen.g.cs
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\View\PageOpladen.baml
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\View\PageRegistreren.g.cs
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\View\PageRegistreren.baml
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIKlant\obj\Debug\nmct.ba.cashlessproject.UIKlant.csprojResolveAssemblyReference.cache

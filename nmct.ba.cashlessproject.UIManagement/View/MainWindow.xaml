@@ -1,0 +1,61 @@
+﻿<Window x:Class="nmct.ba.cashlessproject.UIManagement.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="clr-namespace:nmct.ba.cashlessproject.UIManagement.View"
+        xmlns:vm="clr-namespace:nmct.ba.cashlessproject.UIManagement.ViewModel"
+        Title="Management" Height="750" Width="1200">
+    <Window.DataContext>
+        <vm:ApplicationVM/>
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:PageAanmeldenVM}">
+            <v:PageAanmelden/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PageKassaVM}">
+            <v:PageKassa/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PageOneVM}">
+            <v:PageOne/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PageKlantenVM}">
+            <v:PageKlanten/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PageMedewerkersVM}">
+            <v:PageMedewerkers/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PageProductVM}">
+            <v:PageProduct/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PageStatistiekVM}">
+            <v:PageStatistiek/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="212*"/>
+            <ColumnDefinition Width="47*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Button Style="{StaticResource HeaderStyle}" Name="btnAfmelden" Content="Afmelden" Grid.Row="0" Grid.Column="1" />
+        
+        <ItemsControl ItemsSource="{Binding Pages}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,0">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Style="{StaticResource HeaderStyle}"  Content="{Binding Name}" Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+
+        <ContentControl Grid.Row="1" Content="{Binding CurrentPage}" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
+    </Grid>
+</Window>

@@ -1,0 +1,43 @@
+﻿<Window x:Class="nmct.ba.cashlessproject.UIKassa.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="clr-namespace:nmct.ba.cashlessproject.UIKassa.View"
+        xmlns:vm="clr-namespace:nmct.ba.cashlessproject.UIKassa.ViewModel"
+        Title="MainWindow" Height="750" Width="1200">
+    <Window.DataContext>
+        <vm:ApplicationVM/>
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:PageOneVM}">
+            <v:PageOne/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:InloggenVM}">
+            <v:InloggenPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ScanVM}">
+            <v:ScanPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:BestellingVM}">
+            <v:BestellingPage/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <!-- 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        -->
+
+        <!--
+        <ItemsControl ItemsSource="{Binding Pages}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Name}" Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+         -->
+        <ContentControl Grid.Row="1" Content="{Binding CurrentPage}"/>
+    </Grid>
+</Window>

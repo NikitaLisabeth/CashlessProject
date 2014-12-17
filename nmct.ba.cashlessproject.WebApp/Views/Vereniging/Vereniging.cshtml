@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Vereniging";
+}
+
+<h2>Lijst van verenigingen</h2>
+<table width="1200">
+    <tr>
+        <th>ID</th>
+        <th>Login</th>
+        <th>Paswoord</th>
+        <th>DbNaam</th>
+        <th>DbLogin</th>
+        <th>DbPaswoord</th>
+        <th>Naam vereniging</th>
+        <th>Adres</th>
+        <th>Email</th>
+        <th>Telefoon</th>
+        <th>Edit</th>
+
+
+    </tr>
+
+    @foreach (var item in ViewBag.listVerenigingen)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Login</td>
+            <td>@item.Password</td>
+            <td>@item.DbName</td>
+            <td>@item.DbLogin</td>
+            <td>@item.DbPassword</td>
+            <td>@item.OrganisationName</td>
+            <td>@item.Address</td>
+            <td>@item.Email</td>
+            <td>@item.Phone</td>
+
+            <td><a href="#">Edit</a></td>
+        </tr>
+    }
+</table>
+

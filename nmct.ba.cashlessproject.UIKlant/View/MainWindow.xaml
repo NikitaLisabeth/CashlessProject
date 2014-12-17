@@ -1,0 +1,43 @@
+﻿<Window x:Class="nmct.ba.cashlessproject.UIKlant.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="clr-namespace:nmct.ba.cashlessproject.UIKlant.View"
+        xmlns:vm="clr-namespace:nmct.ba.cashlessproject.UIKlant.ViewModel"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <vm:ApplicationVM/>
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:PageGegevensVM}">
+            <v:PageGegevens/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PageOpladenVM}">
+            <v:PageOpladen/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PageRegistrerenVM}">
+            <v:PageRegistreren/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        
+        <ItemsControl ItemsSource="{Binding Pages}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Margin="5,0" Content="{Binding Name}" Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"
+                VerticalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+         
+        <ContentControl Grid.Row="1" Content="{Binding CurrentPage}"/>
+    </Grid>
+</Window>

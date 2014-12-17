@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="nmct.ba.cashlessproject.UIManagement.View.PageStatistiek"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:nmct.ba.cashlessproject.UIManagement.ViewModel"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="1200">
+    <UserControl.DataContext>
+        <vm:PageStatistiekVM/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="227*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="213*"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="373*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Row="1" Grid.Column="1" Text="Statistieken:" Height="19" Margin="0.4,20.4,0.2,19.8" />
+        <Grid Grid.Column="1" Grid.Row="2" Margin="0.4,0.2,0.2,25.4" Grid.RowSpan="2" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Maak uw keuze: " Grid.Row="0"/>
+            <ComboBox Style="{StaticResource ComboboxStyle}" Name="Statistieken" Grid.Row="1"/>
+            <DatePicker Style="{StaticResource DatePickerStyle}" Name="vanaf" Grid.Row="3"/>
+            <DatePicker Style="{StaticResource DatePickerStyle}"  Name="tot" Grid.Row="5"/>
+            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Van: " Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Tot: " Grid.Row="4" VerticalAlignment="Center"/>
+            <Button Style="{StaticResource ButtonStyle}" Grid.Row="7" Content="Bevestig"/>
+        </Grid>
+    </Grid>
+</UserControl>

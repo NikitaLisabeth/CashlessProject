@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Kassa";
+}
+
+<h2>Kassa</h2>
+
+<table width="1200">
+    <tr>
+        <th>ID</th>
+        <th>Naam kassa</th>
+        <th>Toestel</th>
+        <th>Aankoopdatum</th>
+        <th>Vervaldatum</th>
+        <th>Edit</th>
+    </tr>
+
+    @foreach (var item in ViewBag.KassaList)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.RegisterName</td>
+            <td>@item.Device</td>
+            <td>@item.PurchaseDate</td>
+            <td>@item.ExpiresDate</td>
+              <td><a href="#">Edit</a></td>
+        </tr>
+    }
+</table>

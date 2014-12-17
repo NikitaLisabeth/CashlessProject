@@ -1,0 +1,5 @@
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.Models\obj\Debug\nmct.ba.cashlessproject.Models.csprojResolveAssemblyReference.cache
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.Models\bin\Debug\nmct.ba.cashlessproject.Models.dll
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.Models\bin\Debug\nmct.ba.cashlessproject.Models.pdb
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.Models\obj\Debug\nmct.ba.cashlessproject.Models.dll
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.Models\obj\Debug\nmct.ba.cashlessproject.Models.pdb

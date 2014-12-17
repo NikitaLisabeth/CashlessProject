@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="nmct.ba.cashlessproject.UIManagement.View.PageKlanten"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:vm="clr-namespace:nmct.ba.cashlessproject.UIManagement.ViewModel"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="1200">
+    <UserControl.DataContext>
+        <vm:PageKlantenVM/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="175*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Name="Gegevens" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Margin="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="65*"/>
+                <ColumnDefinition Width="219*"/>
+                <ColumnDefinition Width="126*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="0" Text="Naam klant:" VerticalAlignment="Center" Height="19"/>
+            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="1" Text="Id:" VerticalAlignment="Center" Height="19" />
+            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="2" Text="Adres:" VerticalAlignment="Center" Height="19" />
+            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="3" Text="Balans:" VerticalAlignment="Center" Height="20"  />
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedKlant.CustomerName}" Grid.Column="1" Grid.Row="0" />
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedKlant.Id}" Grid.Column="1" Grid.Row="1"  />
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedKlant.Address}" Grid.Column="1" Grid.Row="2"/>
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedKlant.Balance}" Grid.Column="1" Grid.Row="3" />
+
+            <Image Grid.Column="2" Grid.RowSpan="5" Margin="5,1,114,1" />
+
+
+        </Grid>
+        <Grid Name="Buttons" Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource ButtonStyle}" Command="{Binding SetStatusToUpdateCommand}" Grid.Column="0" Content="Bewerk" />
+            <Button Style="{StaticResource ButtonStyle}" Grid.Column="1" Content="Verwijderen" />
+            <Button Style="{StaticResource ButtonStyle}" Command="{Binding ClickSaveCommand}" Grid.Column="3" Content="Opslaan" />
+
+
+        </Grid>
+        <ListBox Style="{StaticResource ListboxStyle}" ItemsSource="{Binding Klant}" DisplayMemberPath="CustomerName" SelectedItem="{Binding SelectedKlant}"  Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0"/>
+        <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Row="0" Grid.Column="1" Text="Klanten:" Grid.ColumnSpan="3" Margin="0" VerticalAlignment="Center"/>
+        <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="3" Grid.Row="0" Text="Geselecteerde klant:"  VerticalAlignment="Center" Height="16" Margin="0" />
+
+    </Grid>
+</UserControl>

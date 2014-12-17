@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="nmct.ba.cashlessproject.temp.View.PageOpladen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:vm="clr-namespace:nmct.ba.cashlessproject.KlantUI.ViewModel"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="272*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Mijn kaart opladen:" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" />
+        <Grid Name="Cijfers" Grid.Column="1" Grid.Row="2" Margin="0,5,50,50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btnEen" Content="1" Grid.Row="0" Grid.Column="0" />
+            <Button Name="btnTwee" Content="2" Grid.Row="0" Grid.Column="1" />
+            <Button Name="btnDrie" Content="3" Grid.Row="0" Grid.Column="2" />
+            <Button Name="btnVier" Content="4" Grid.Row="1" Grid.Column="0" />
+            <Button Name="btnVijf" Content="5" Grid.Row="1" Grid.Column="1" />
+            <Button Name="btnZes" Content="6" Grid.Row="1" Grid.Column="2" />
+            <Button Name="btnZeven" Content="7" Grid.Row="2" Grid.Column="0" />
+            <Button Name="btnAcht" Content="8" Grid.Row="2" Grid.Column="1" />
+            <Button Name="btnNegen" Content="9" Grid.Row="2" Grid.Column="2" />
+            <Button Name="btnNul" Content="0" Grid.Row="3" Grid.Column="1" />
+
+
+        </Grid>
+        <Grid Name="GegevensOpladen" Grid.Column="2" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Huidig saldo:" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" />
+            <TextBlock Text="Opladen:" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" />
+            <TextBlock Text="Nieuw saldo:" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" />
+
+            <TextBox Name="txbHuidigSaldo" Grid.Column="1" Grid.Row="0" Margin="0,1" />
+            <TextBox Name="txbOpladen" Grid.Column="1" Grid.Row="1" Margin="0,1" />
+            <TextBox Name="txbNieuwSaldo" Grid.Column="1" Grid.Row="2" Margin="0,1" />
+
+            <Button Content="Bevestigen" Grid.Column="0" Grid.Row="5" Margin="0,0,2,0" />
+            <Button Content="Annuleren" Grid.Column="1" Grid.Row="5" Margin="2,0,0,0" />
+
+        </Grid>
+    </Grid>
+</UserControl>

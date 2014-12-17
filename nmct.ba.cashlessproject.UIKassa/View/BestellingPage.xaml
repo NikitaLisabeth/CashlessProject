@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="nmct.ba.cashlessproject.UIKassa.View.BestellingPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:nmct.ba.cashlessproject.UIKassa.ViewModel"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="1200">
+    <UserControl.DataContext>
+        <vm:BestellingVM/>
+    </UserControl.DataContext>
+    <Grid Name="Body">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="507*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="51*"/>
+            <RowDefinition Height="14*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="281*"/>
+            <ColumnDefinition Width="11.2"/>
+            <ColumnDefinition Width="217*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Name="Head" Style="{StaticResource Head}" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,0.2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource HeadText}"  Text="Welkom, ..." Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
+            <TextBlock Style="{StaticResource HeadText}" Text="Afmelden" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="15" >
+                <TextBlock.InputBindings>
+                    <MouseBinding Command="{Binding AfmeldenCommand}" MouseAction="LeftClick" />
+                </TextBlock.InputBindings>
+            </TextBlock>
+        </Grid>
+        <Grid Name="Gegevens" Grid.Column="2" Grid.Row="1" Grid.RowSpan="4" Margin="10.8,79.8,0,50.8" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Style="{StaticResource TextblockStyle}" Grid.Column="0" Grid.Row="0" Text="Naam:"  Margin="0,0,0,0" />
+            <TextBlock Style="{StaticResource TextblockStyle}" Grid.Column="0" Grid.Row="1" Text="Saldo:"  Margin="0,0,0,0"  />
+            <TextBox Grid.Column="1" Grid.Row="0" Margin="0,1,5,1"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Margin="0,1,5,1"/>
+            <TextBlock Style="{StaticResource TextblockStyle}" Text="Product(en):" Grid.Column="0" Grid.Row="2" />
+            <ListBox Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="0,0,5,2" />
+            <TextBlock Style="{StaticResource TextblockStyle}"  Grid.Column="0" Grid.Row="6" Text="Totaal bedrag:" />
+            <TextBox Name="TxbTotaalBedrag" Grid.Column="1" Grid.Row="6" Margin="0,0,5,0"/>
+            <Button Command="{Binding TerugCommand}" FontSize="20" Grid.Column="0" Grid.Row="8" Content="Terug" Margin="0,0,5,0"/>
+            <Button FontSize="20" Grid.Column="1" Grid.Row="8" Content="Afrekenen" Margin="0,0,5,0" />
+
+        </Grid>
+        <Grid Name="Producten" Grid.Row="2" Grid.Column="1" Margin="5.4,5.8,3.2,5.4" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="0" Grid.Row="0" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="1" Grid.Row="0" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="2" Grid.Row="0" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="3" Grid.Row="0" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="0" Grid.Row="1" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="1" Grid.Row="1" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="2" Grid.Row="1" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="3" Grid.Row="1" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="0" Grid.Row="2" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="1" Grid.Row="2" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="2" Grid.Row="2" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="3" Grid.Row="2" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="0" Grid.Row="3" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="1" Grid.Row="3" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="2" Grid.Row="3" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="3" Grid.Row="3" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="0" Grid.Row="4" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="1" Grid.Row="4" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="2" Grid.Row="4" Content="Product"/>
+            <Button Style="{StaticResource ProcuctChoice}" Grid.Column="3" Grid.Row="4" Content="Product"/>
+        </Grid>
+
+        <TextBlock Style="{StaticResource TextblockStyle}" Grid.Column="3" Grid.Row="1" Text="Klant gegevens:" Height="16" Margin="0.6,30.8,0,33.2" />
+        <ComboBox ItemsSource="{Binding Categorie}" Name="cboCategorie" Grid.Row="1" Grid.Column="1" Margin="15.4,14.8,15.2,15.2"/>
+    </Grid>
+</UserControl>

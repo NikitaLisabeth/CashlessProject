@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="nmct.ba.cashlessproject.UIManagement.View.PageKassa"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:nmct.ba.cashlessproject.UIManagement.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="1200">
+    <UserControl.DataContext>
+        <vm:PageKassaVM/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="227*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="175*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Name="Gegevens" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="122*"/>
+                <ColumnDefinition Width="213*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="0" Text="Kassanummer:" VerticalAlignment="Center"  Height="19"  />
+            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="1" Text="Medewerker:" VerticalAlignment="Center" Height="19"  />
+            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="2" Text="Device:" VerticalAlignment="Center"  Height="19" />
+            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="3" Text="Vanaf:" VerticalAlignment="Center" Height="19"/>
+            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="4" Text="Tot en met:" VerticalAlignment="Center"  Height="19"/>
+
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedKassa.Id}" Grid.Column="1" Grid.Row="0" />
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedKassa.EmployeeName}" Grid.Column="1" Grid.Row="1" />
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedKassa.Device}" Grid.Column="1" Grid.Row="2" />
+            <DatePicker Style="{StaticResource DatePickerStyle}" SelectedDate="{Binding SelectedKassa.From}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Height="24" />
+            <DatePicker Style="{StaticResource DatePickerStyle}" SelectedDate="{Binding SelectedKassa.Until}" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Height="24"/>
+
+        </Grid>
+        <Grid Name="Buttons" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource ButtonStyle}" Grid.Column="0" Content="Bewerk" />
+            <Button Style="{StaticResource ButtonStyle}" Grid.Column="1" Content="Verwijderen" />
+            <Button Style="{StaticResource ButtonStyle}" Grid.Column="2" Content="Opslaan" />
+
+
+        </Grid>
+        <ListBox Style="{StaticResource ListboxStyle}" ItemsSource="{Binding Kassa}" DisplayMemberPath="RegisterName" SelectedItem="{Binding SelectedKassa}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0.4,0,0,0.8"/>
+        <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Row="0" Grid.Column="1" Text="Kassa's:" Grid.ColumnSpan="2" VerticalAlignment="Center" />
+        <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="3" Grid.Row="0" Text="Geselecteerde kassa:"  VerticalAlignment="Center"/>
+
+    </Grid>
+</UserControl>
