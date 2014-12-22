@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="nmct.ba.cashlessproject.UIKlant.View.PageStart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:nmct.ba.cashlessproject.UIKlant.ViewModel"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="525">
+    <UserControl.DataContext>
+        <vm:PageStartVM/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Button Command="{Binding RegistrerenCommand}" Content="Registeren" Margin="25" Grid.Row="1" Grid.Column="0" />
+        <Button Command="{Binding BekijkenCommand}" Content="Gegevens bekijken" Margin="25" Grid.Row="1" Grid.Column="1" />
+
+    </Grid>
+</UserControl>

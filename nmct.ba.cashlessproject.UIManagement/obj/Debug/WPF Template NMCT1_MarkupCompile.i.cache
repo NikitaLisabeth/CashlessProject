@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIManagement\obj\Debug\
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIManagement\obj\Debug\
 nmct.ba.cashlessproject.UIManagement
 none
 false
 DEBUG;TRACE
-C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.UIManagement\App.xaml
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIManagement\App.xaml
 81127953608
 
 261199824313
-25532119825
+251224359365
 View\MainWindow.xaml;View\PageAanmelden.xaml;View\PageKassa.xaml;View\PageKlanten.xaml;View\PageMedewerkers.xaml;View\PageOne.xaml;View\PageProduct.xaml;View\PageStatistiek.xaml;
 
 False

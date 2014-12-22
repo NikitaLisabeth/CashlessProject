@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ba.cashlessproject.Web
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ba.cashlessproject.UIKassa", "nmct.ba.cashlessproject.UIKassa\nmct.ba.cashlessproject.UIKassa.csproj", "{ECC14966-34DD-42FC-8A35-4820E5E9481E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ba.cashlessproject.model", "nmct.ba.cashlessproject.model\nmct.ba.cashlessproject.model.csproj", "{E8AEB382-43C9-4891-B272-570B17F3F587}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{ECC14966-34DD-42FC-8A35-4820E5E9481E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECC14966-34DD-42FC-8A35-4820E5E9481E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECC14966-34DD-42FC-8A35-4820E5E9481E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8AEB382-43C9-4891-B272-570B17F3F587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8AEB382-43C9-4891-B272-570B17F3F587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8AEB382-43C9-4891-B272-570B17F3F587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8AEB382-43C9-4891-B272-570B17F3F587}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

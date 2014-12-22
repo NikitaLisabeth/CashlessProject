@@ -170,9 +170,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201412201638328_InitDatabase.cs" />
+    <Compile Include="Migrations\201412201638328_InitDatabase.Designer.cs">
+      <DependentUpon>201412201638328_InitDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="PresentationModels\KassaPM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -236,6 +242,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Vereniging\Vereniging.cshtml" />
     <Content Include="Views\Kassa\Kassa.cshtml" />
+    <Content Include="Views\Kassa\Toevoegen.cshtml" />
+    <Content Include="Views\Vereniging\Toevoegen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -248,10 +256,18 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nmct.ba.cashlessproject.Models\nmct.ba.cashlessproject.Models.csproj">
-      <Project>{5f92ae14-c961-45bf-9e54-02aa0a0aba1f}</Project>
-      <Name>nmct.ba.cashlessproject.Models</Name>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\nmct.ba.cashlessproject.model\nmct.ba.cashlessproject.model.csproj">
+      <Project>{e8aeb382-43c9-4891-b272-570b17f3f587}</Project>
+      <Name>nmct.ba.cashlessproject.model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201412201638328_InitDatabase.resx">
+      <DependentUpon>201412201638328_InitDatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

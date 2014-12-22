@@ -12,10 +12,10 @@ namespace nmct.ba.cashlessproject.UIKlant.ViewModel
     {
         public ApplicationVM()
         {
-            Pages.Add(new PageGegevensVM()); 
-            Pages.Add(new PageOpladenVM());
-            Pages.Add(new PageRegistrerenVM());
-
+            //Pages.Add(new PageGegevensVM()); 
+            //Pages.Add(new PageOpladenVM());
+            //Pages.Add(new PageRegistrerenVM());
+            Pages.Add(new PageStartVM());
             // Add other pages
 
             CurrentPage = Pages[0];
@@ -44,7 +44,7 @@ namespace nmct.ba.cashlessproject.UIKlant.ViewModel
             get { return new RelayCommand<IPage>(ChangePage); }
         }
 
-        private void ChangePage(IPage page)
+        public void ChangePage(IPage page)
         {
             CurrentPage = page;
         }

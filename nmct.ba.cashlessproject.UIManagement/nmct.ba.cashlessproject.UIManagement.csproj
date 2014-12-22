@@ -185,9 +185,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nmct.ba.cashlessproject.Models\nmct.ba.cashlessproject.Models.csproj">
-      <Project>{5f92ae14-c961-45bf-9e54-02aa0a0aba1f}</Project>
-      <Name>nmct.ba.cashlessproject.Models</Name>
+    <ProjectReference Include="..\nmct.ba.cashlessproject.model\nmct.ba.cashlessproject.model.csproj">
+      <Project>{e8aeb382-43c9-4891-b272-570b17f3f587}</Project>
+      <Name>nmct.ba.cashlessproject.model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

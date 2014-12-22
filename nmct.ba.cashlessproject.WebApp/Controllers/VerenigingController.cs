@@ -11,6 +11,7 @@ namespace nmct.ba.cashlessproject.WebApp.Controllers
     public class VerenigingController : Controller
     {
         // GET: Vereniging
+        [Authorize]
         [HttpGet]
         public ActionResult Vereniging()
         {
@@ -18,9 +19,30 @@ namespace nmct.ba.cashlessproject.WebApp.Controllers
             ViewBag.listVerenigingen = list;
             return View();
         }
+        [Authorize]
         public ActionResult Toevoegen()
         {
             return View();
+        }
+        [Authorize]
+        [HttpPost]
+        public ActionResult Toevoegen(string login, string password, string DbName, string DbLogin, string DbPassword, string organisationName, string address, string email, string phone)
+        {
+            if (login != null && password != null && DbName != null && DbLogin !=null && DbPassword != null && organisationName != null && address != null && email != null && phone != null)
+            {
+                Organisations o = new Organisations();
+                o.Address = address;
+                o.DbLogin = DbLogin;
+                o.DbName = DbName;
+                o.DbPassword = DbPassword;
+                o.Email = email;
+                o.Login = login;
+                o.OrganisationName = organisationName;
+                o.Password = password;
+                o.Phone = phone;
+                VerenigingDA.AddOrganisation(o);
+            }
+            return RedirectToAction("Vereniging");
         }
     }
 }

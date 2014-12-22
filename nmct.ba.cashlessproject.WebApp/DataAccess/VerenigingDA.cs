@@ -72,5 +72,21 @@ namespace nmct.ba.cashlessproject.WebApp.DataAccess
 
         //    return rowsaffected;
         //}
+
+        public static int AddOrganisation(Organisations o)
+        {
+            string sql = "INSERT INTO [IT bedrijf].[dbo].[Organisations] VALUES(@Login, @Password, @DbName, @DbLogin, @DbPassword, @OrganisationName, @Address, @Email, @Phone)";
+            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@Login", o.Login);
+            DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@Password", o.Password);
+            DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@DbName", o.DbName);
+            DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@DbLogin", o.DbLogin);
+            DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@DbPassword", o.DbPassword);
+            DbParameter par6 = Database.AddParameter(CONNECTIONSTRING, "@OrganisationName", o.OrganisationName);
+            DbParameter par7 = Database.AddParameter(CONNECTIONSTRING, "@Address", o.Address);
+            DbParameter par8 = Database.AddParameter(CONNECTIONSTRING, "@Email", o.Email);
+            DbParameter par9 = Database.AddParameter(CONNECTIONSTRING, "@Phone", o.Phone);
+
+            return Database.InsertData(CONNECTIONSTRING, sql, par1, par2, par3, par4, par5, par6, par7, par8, par9);
+        }
     }
 }

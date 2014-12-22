@@ -17,14 +17,17 @@
         <DataTemplate DataType="{x:Type vm:PageRegistrerenVM}">
             <v:PageRegistreren/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PageStartVM}">
+            <v:PageStart/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
-        <Grid.RowDefinitions>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="2*"/>
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>-->
         
-        <ItemsControl ItemsSource="{Binding Pages}">
+        <!--<ItemsControl ItemsSource="{Binding Pages}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Button Margin="5,0" Content="{Binding Name}" Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"/>
@@ -36,7 +39,7 @@
                 VerticalAlignment="Center"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-        </ItemsControl>
+        </ItemsControl>-->
          
         <ContentControl Grid.Row="1" Content="{Binding CurrentPage}"/>
     </Grid>

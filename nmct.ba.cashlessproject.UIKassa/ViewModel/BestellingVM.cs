@@ -20,7 +20,7 @@ namespace nmct.ba.cashlessproject.UIKassa.ViewModel
         }
         public BestellingVM()
         {
-            GetCategorien();
+            //GetCategorien();
         }
 
         private string _error;

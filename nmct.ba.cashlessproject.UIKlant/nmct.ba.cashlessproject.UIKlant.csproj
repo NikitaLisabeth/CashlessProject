@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="beid35libCS">
-      <HintPath>..\..\..\..\Documents\Belgium Identity Card SDK\beidlib\dotNet\bin\beid35libCS.dll</HintPath>
+      <HintPath>..\..\..\..\..\Documents\Belgium Identity Card SDK\beidlib\dotNet\bin\beid35libCS.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight">
       <HintPath>..\packages\MvvmLightLibs.5.0.2.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
@@ -55,6 +55,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Extensions.dll</HintPath>
@@ -83,11 +84,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\StringToImageConverter.cs" />
     <Compile Include="ViewModel\ApplicationVM.cs" />
     <Compile Include="ViewModel\PageGegevensVM.cs" />
     <Compile Include="ViewModel\PageOneVM.cs" />
     <Compile Include="ViewModel\PageOpladenVM.cs" />
     <Compile Include="ViewModel\PageRegistrerenVM.cs" />
+    <Compile Include="ViewModel\PageStartVM.cs" />
     <Compile Include="View\PageGegevens.xaml.cs">
       <DependentUpon>PageGegevens.xaml</DependentUpon>
     </Compile>
@@ -99,6 +102,9 @@
     </Compile>
     <Compile Include="View\PageRegistreren.xaml.cs">
       <DependentUpon>PageRegistreren.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageStart.xaml.cs">
+      <DependentUpon>PageStart.xaml</DependentUpon>
     </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -127,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PageRegistreren.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageStart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -159,7 +169,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\nmct.ba.cashlessproject.model\nmct.ba.cashlessproject.model.csproj">
+      <Project>{e8aeb382-43c9-4891-b272-570b17f3f587}</Project>
+      <Name>nmct.ba.cashlessproject.model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

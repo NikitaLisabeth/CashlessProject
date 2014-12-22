@@ -35,3 +35,6 @@ C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproj
 C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.KassaUI\bin\Debug\Microsoft.Practices.ServiceLocation.xml
 C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.KassaUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\nmct.ba.cashlessproject.KassaUI\obj\Debug\nmct.ba.cashlessproject.KassaUI_MarkupCompile.lref
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.KassaUI\bin\Debug\nmct.ba.cashlessproject.KassaUI.exe.config
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.KassaUI\obj\Debug\nmct.ba.cashlessproject.KassaUI.exe
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.KassaUI\obj\Debug\nmct.ba.cashlessproject.KassaUI.pdb

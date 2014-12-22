@@ -4,7 +4,15 @@
 }
 
 <h2>Kassa</h2>
-
+<select>
+    @foreach (var item in ViewBag.VerenigingList)
+    {
+       <option id="@item.Id">
+           @item.OrganisationName
+       </option>
+    }
+</select>
+<input type="button" value="Kies">
 <table width="1200">
     <tr>
         <th>ID</th>
@@ -12,17 +20,19 @@
         <th>Toestel</th>
         <th>Aankoopdatum</th>
         <th>Vervaldatum</th>
+        <th>Vereniging</th>
         <th>Edit</th>
     </tr>
 
     @foreach (var item in ViewBag.KassaList)
     {
         <tr>
-            <td>@item.Id</td>
-            <td>@item.RegisterName</td>
-            <td>@item.Device</td>
-            <td>@item.PurchaseDate</td>
-            <td>@item.ExpiresDate</td>
+            <td>@item.Kassa.Id</td>
+            <td>@item.Kassa.RegisterName</td>
+            <td>@item.Kassa.Device</td>
+            <td>@item.Kassa.PurchaseDate</td>
+            <td>@item.Kassa.ExpiresDate</td>
+            <td>@item.Organisatie.OrganisationName</td>
               <td><a href="#">Edit</a></td>
         </tr>
     }

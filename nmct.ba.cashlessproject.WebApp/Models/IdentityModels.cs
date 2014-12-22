@@ -16,6 +16,9 @@ namespace nmct.ba.cashlessproject.WebApp.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public string Name { get; set; }
+        public string FirstName { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
