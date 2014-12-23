@@ -18,10 +18,13 @@ namespace nmct.ba.cashlessproject.WebApp.Controllers
         {
             List<Organisations> listorganisations = VerenigingDA.getVerenigingen();
             ViewBag.VerenigingList = listorganisations;
+
             List<RegistersManagement> listRegisterWithoutOrg = KassaDA.getKassasZonderVereniging();
             ViewBag.KassaListZonderOrg = listRegisterWithoutOrg;
-            List<KassaPM> list = KassaDA.getKassas();
+
+            List<KassaPM> list = KassaDA.getKassasMetVereniging();
             ViewBag.KassaList = list;
+
             return View();
         }
         [Authorize]
@@ -45,6 +48,7 @@ namespace nmct.ba.cashlessproject.WebApp.Controllers
             }
             return RedirectToAction("Kassa");
         }
+        [Authorize]
         [HttpGet]
         public ActionResult PerVereniging(int vereniging)
         {
@@ -52,7 +56,7 @@ namespace nmct.ba.cashlessproject.WebApp.Controllers
             ViewBag.KassaList = list;
             return View("Kassa");
         }
-
+        [Authorize]
         [HttpGet]
         public ActionResult Overzicht(int vereniging)
         {
@@ -65,13 +69,36 @@ namespace nmct.ba.cashlessproject.WebApp.Controllers
                 ViewBag.Vereniging = o; 
                 return View();
             }
-            
-            //kzou hier een nieuwe view aanmaken die overzicht noemt.
-            //kga nog eens kijken  waarom hij die id niet will pakken momento 
-            //maak gewoon een nieuwe view overzicht waar je het KassaList veiwbag toont DONE :) graag gedaan ;) bye
             return RedirectToAction("Kassa");
         }
+        [Authorize]
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            List<Organisations> listorganisatie = VerenigingDA.getVerenigingen();
+            ViewBag.listorganisatie = listorganisatie;
+            List<RegistersManagement> listkassa = KassaDA.getKassasZonderVereniging();
+            ViewBag.listkassa = listkassa;
+            return View();
+        }
+        [Authorize]
+        [HttpPost]
+        public ActionResult Edit(int kassa, int vereniging, DateTime vanaf, DateTime tot)
+        {
+            List<KassaPM> toekenning = new List<KassaPM>();
+            toekenning = KassaDA.getKassasMetId(kassa);
 
+            if (toekenning.Count == 0) //kassa nog niet toegekend aan vereniging
+            {
+                int rowsaffected = KassaDA.VoegOrganisatieToeAanKassa(kassa, vereniging,vanaf,tot);
+            }
+            else if (toekenning.Count == 1)//kassa al toegekend aan vereniging => kassa wijzigen van vereniging
+            {
+                int rowsaffected = KassaDA.UpdateOrganisationRegister(vereniging, kassa,vanaf,tot);
+            }
+
+            return RedirectToAction("Kassa", "Kassa");
+        }
 
     }
 }

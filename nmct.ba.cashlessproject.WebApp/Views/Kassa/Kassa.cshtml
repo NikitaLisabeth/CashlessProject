@@ -25,7 +25,7 @@
         <th>Aankoopdatum</th>
         <th>Vervaldatum</th>
         <th>Vereniging</th>
-        <th>Edit</th>
+        <th>Bewerk</th>
     </tr>
 
     @foreach (var item in ViewBag.KassaList)
@@ -37,7 +37,7 @@
             <td>@item.Kassa.PurchaseDate</td>
             <td>@item.Kassa.ExpiresDate</td>
             <td>@item.Organisatie.OrganisationName</td>
-              <td><a href="#">Edit</a></td>
+              <td><a href="/kassa/edit">Kies andere vereniging</a></td>
         </tr>
     }
 </table>
@@ -50,7 +50,7 @@
         <th>Toestel</th>
         <th>Aankoopdatum</th>
         <th>Vervaldatum</th>
-        <th>Edit</th>
+        <th>Koppelen</th>
     </tr>
 
     @foreach (var item in ViewBag.KassaListZonderOrg)
@@ -61,7 +61,10 @@
             <td>@item.Device</td>
             <td>@item.PurchaseDate</td>
             <td>@item.ExpiresDate</td>
-            <td><a href="#">Edit</a></td>
+            <td><a href="/kassa/edit">Koppel de kassa aan een vereniging</a></td>
         </tr>
     }
 </table>
+<br />
+<p>Klik <a href="/kassa/toevoegen">hier</a> om een nieuwe kassa toe te voegen.</p>
+

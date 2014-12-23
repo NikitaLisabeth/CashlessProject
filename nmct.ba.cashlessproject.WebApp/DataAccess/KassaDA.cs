@@ -13,7 +13,7 @@ namespace nmct.ba.cashlessproject.WebApp.DataAccess
     public class KassaDA
     {
         private const string CONNECTIONSTRING = "DefaultConnection";
-        public static List<KassaPM> getKassas()
+        public static List<KassaPM> getKassasMetVereniging()
         {
             List<KassaPM> list = new List<KassaPM>();
 
@@ -152,6 +152,50 @@ namespace nmct.ba.cashlessproject.WebApp.DataAccess
             DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@PurchaseDate", Register.PurchaseDate);
             DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@ExpiresDate", Register.ExpiresDate);
             return Database.InsertData(CONNECTIONSTRING, sql, par1, par2, par3, par4);
+        }
+
+        public static List<RegistersManagement> getAlleKassas()
+        {
+            List<RegistersManagement> list = new List<RegistersManagement>();
+
+            string sql = "SELECT Registers.[ID],[RegisterName],[Device],[PurchaseDate],[ExpiresDate] FROM [IT bedrijf].[dbo].[Registers]";
+            DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql);
+
+            while (reader.Read())
+            {
+                RegistersManagement reg = new RegistersManagement()
+                {
+                    Id = Int32.Parse(reader["ID"].ToString()),
+                    RegisterName = reader["RegisterName"].ToString(),
+                    Device = reader["Device"].ToString(),
+                    PurchaseDate = Convert.ToDateTime(reader["PurchaseDate"].ToString()),
+                    ExpiresDate = Convert.ToDateTime(reader["ExpiresDate"].ToString())
+                };
+                list.Add(reg);
+            }
+            reader.Close();
+            return list;
+        }
+
+        public static int UpdateOrganisationRegister(int verenigingId, int kassaId,DateTime vanaf, DateTime tot)
+        {
+            string sql = "UPDATE [IT bedrijf].[dbo].[Organisation_Register] SET  [RegisterID] = @RegisterId ,[FromDate] = @FromDate ,[UntilDate] = @UntilDate WHERE [OrganisationID] = @OrganisationId";
+            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@OrganisationId", verenigingId);
+            DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@RegisterId", kassaId);
+            DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@FromDate", vanaf);
+            DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@UntilDate", tot);
+
+            return Database.InsertData(CONNECTIONSTRING, sql, par1, par2,par3,par4);
+        }
+
+        public static int VoegOrganisatieToeAanKassa(int kassaId, int verenigingId, DateTime vanaf, DateTime tot)
+        {
+            string sql = "INSERT INTO [IT bedrijf].[dbo].[Organisation_Register] ([OrganisationID],[RegisterID],[FromDate],[UntilDate]) VALUES (@OrganisationId,@RegisterId,@FromDate,@UntilDate)";
+            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@OrganisationId", verenigingId);
+            DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@RegisterId", kassaId);
+            DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@FromDate", vanaf);
+            DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@UntilDate", tot);
+            return Database.InsertData(CONNECTIONSTRING, sql, par1, par2,par3,par4);
         }
     }
 }

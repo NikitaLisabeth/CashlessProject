@@ -246,6 +246,7 @@
     <Content Include="Views\Vereniging\Toevoegen.cshtml" />
     <Content Include="Views\Vereniging\Bewerk.cshtml" />
     <Content Include="Views\Kassa\Overzicht.cshtml" />
+    <Content Include="Views\Kassa\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

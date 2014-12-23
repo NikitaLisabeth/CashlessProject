@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Koppel een kassa aan een vereniging</h2>
+<form method="post" action="/kassa/Edit">
+    <p>
+        Selecteer een kassa
+    <p />
+    <select name="kassa">
+        @foreach (var item in ViewBag.listkassa)
+        {
+            <option value="@item.Id">@item.RegisterName</option>
+        }
+    </select>
+
+    <p>
+        Selecteer een vereniging
+    </p>
+    <select name="vereniging">
+        @foreach (var item in ViewBag.listorganisatie)
+        {
+            <option value="@item.Id">@item.OrganisationName</option>
+        }
+    </select>
+    <br /><br />
+    <p>
+        Vanaf:
+    </p>
+    <input name="vanaf" type="date" min="1/1/1900"/>
+    <br /><br />
+    <p>
+        Tot:
+    </p>
+    <input name="tot" type="date" min="1/1/1900" />
+    <div>
+        <br />
+        <input type="submit" value="Koppelen" />
+    </div>
+
+</form>
+
+<br />
+<a href="/kassa/kassa">Keer terug naar het overzicht</a>

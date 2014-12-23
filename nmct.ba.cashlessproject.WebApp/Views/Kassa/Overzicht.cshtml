@@ -13,7 +13,7 @@
         <th>Aankoopdatum</th>
         <th>Vervaldatum</th>
         <th>Vereniging</th>
-        <th>Edit</th>
+        <th>Bewerk</th>
     </tr>
 
     @foreach (var item in ViewBag.KassaList)
@@ -25,7 +25,11 @@
             <td>@item.Kassa.PurchaseDate</td>
             <td>@item.Kassa.ExpiresDate</td>
             <td>@item.Organisatie.OrganisationName</td>
-            <td><a href="#">Edit</a></td>
+            <td><a href="/kassa/edit">Kies een andere vereniging</a></td>
         </tr>
     }
 </table>
+
+<br />
+
+<a href="/kassa/kassa">Keer terug naar het overzicht</a>
