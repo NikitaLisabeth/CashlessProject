@@ -4,15 +4,19 @@
 }
 
 <h2>Kassa</h2>
-<select>
-    @foreach (var item in ViewBag.VerenigingList)
-    {
-       <option id="@item.Id">
-           @item.OrganisationName
-       </option>
-    }
-</select>
-<input type="button" value="Kies">
+<h3>Lijst van kassa's met een vereniging</h3>
+@using (Html.BeginForm("Overzicht", "Kassa", FormMethod.Get)) { 
+    <select name="vereniging">
+        <option value="0">Kies een vereniging</option>
+        @foreach (var item in ViewBag.VerenigingList)
+        {
+            <option value="@item.Id">
+                @item.OrganisationName
+            </option>
+        }
+    </select>
+    <input type="submit" value="Kies" />
+}
 <table width="1200">
     <tr>
         <th>ID</th>
@@ -34,6 +38,30 @@
             <td>@item.Kassa.ExpiresDate</td>
             <td>@item.Organisatie.OrganisationName</td>
               <td><a href="#">Edit</a></td>
+        </tr>
+    }
+</table>
+
+<h3>Lijst van kassa's zonder vereniging</h3>
+<table width="1200">
+    <tr>
+        <th>ID</th>
+        <th>Naam kassa</th>
+        <th>Toestel</th>
+        <th>Aankoopdatum</th>
+        <th>Vervaldatum</th>
+        <th>Edit</th>
+    </tr>
+
+    @foreach (var item in ViewBag.KassaListZonderOrg)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.RegisterName</td>
+            <td>@item.Device</td>
+            <td>@item.PurchaseDate</td>
+            <td>@item.ExpiresDate</td>
+            <td><a href="#">Edit</a></td>
         </tr>
     }
 </table>

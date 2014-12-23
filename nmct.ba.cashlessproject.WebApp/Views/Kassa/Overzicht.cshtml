@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Overzicht";
+}
+
+<h2>Overzicht kassa's @ViewBag.Vereniging.OrganisationName</h2>
+
+<table width="1200">
+    <tr>
+        <th>ID</th>
+        <th>Naam kassa</th>
+        <th>Toestel</th>
+        <th>Aankoopdatum</th>
+        <th>Vervaldatum</th>
+        <th>Vereniging</th>
+        <th>Edit</th>
+    </tr>
+
+    @foreach (var item in ViewBag.KassaList)
+    {
+        <tr>
+            <td>@item.Kassa.Id</td>
+            <td>@item.Kassa.RegisterName</td>
+            <td>@item.Kassa.Device</td>
+            <td>@item.Kassa.PurchaseDate</td>
+            <td>@item.Kassa.ExpiresDate</td>
+            <td>@item.Organisatie.OrganisationName</td>
+            <td><a href="#">Edit</a></td>
+        </tr>
+    }
+</table>

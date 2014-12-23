@@ -57,21 +57,27 @@ namespace nmct.ba.cashlessproject.WebApp.DataAccess
             };
         }
 
-        //public static int UpdateVereniging(int id)
-        //{
-        //    int rowsaffected = 0;
+        public static int UpdateVereniging(Organisations o)
+        {
+            int rowsaffected = 0;
 
-        //    string sql = "UPDATE [IT bedrijf].[dbo].[Organisations]  SET [Login],[Password], [DbPassword] ,[DbName] ,[DbLogin],[OrganisationName] ,[Address] ,[Email] ,[Phone] WHERE ID=@ID";
-        //    DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@Name", name);
-        //    DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@Balance", balance);
-        //    DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@Picture", picture);
-        //    DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@Address", address);
-        //    DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
+            string sql = "UPDATE [IT bedrijf].[dbo].[Organisations]  SET [Login]=@Login, [Password]=@Password, [DbPassword]=@DbPassword, [DbName]=@DbName, [DbLogin]=@DbLogin, [OrganisationName]=@OrganisationName, [Address]=@Address, [Email]=@Email, [Phone]=@Phone WHERE ID=@ID";
+            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@Login",o.Login);
+            DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@Password", o.Password);
+            DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@DbPassword", o.DbPassword);
+            DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@DbName", o.DbName);
+            DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@ID", o.Id);
+            DbParameter par6 = Database.AddParameter(CONNECTIONSTRING, "@DbLogin", o.DbLogin);
+            DbParameter par7 = Database.AddParameter(CONNECTIONSTRING, "@OrganisationName", o.OrganisationName);
+            DbParameter par8 = Database.AddParameter(CONNECTIONSTRING, "@Address", o.Address);
+            DbParameter par9 = Database.AddParameter(CONNECTIONSTRING, "@Email", o.Email);
+            DbParameter par10 = Database.AddParameter(CONNECTIONSTRING, "@Phone", o.Phone);
 
-        //    rowsaffected += Database.ModifyData(CONNECTIONSTRING, sql, par1, par2, par3, par4, par5);
 
-        //    return rowsaffected;
-        //}
+            rowsaffected += Database.ModifyData(CONNECTIONSTRING, sql, par1, par2, par3, par4, par5,par6,par7,par8,par9,par10);
+
+            return rowsaffected;
+        }
 
         public static int AddOrganisation(Organisations o)
         {

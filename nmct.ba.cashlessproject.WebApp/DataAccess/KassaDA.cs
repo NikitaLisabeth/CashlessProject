@@ -63,14 +63,38 @@ namespace nmct.ba.cashlessproject.WebApp.DataAccess
             reader.Close();
             return list;
         }
-        public static KassaPM getKassasMetId(int id)
+        public static List<RegistersManagement> getKassasZonderVereniging()
         {
-            KassaPM pm = new KassaPM();
-            string sql = "SELECT Registers.[ID],[RegisterName],[Device],[PurchaseDate],[ExpiresDate], Organisations.OrganisationName, Organisation_Register.FromDate, Organisation_Register.UntilDate, Organisation_Register.OrganisationID, [Organisations].ID ,[Login],[Password],[DbName],[DbLogin],[DbPassword],[Address] ,[Email],[Phone]  , Organisation_Register.OrganisationID , Organisation_Register.RegisterID FROM [IT bedrijf].[dbo].[Registers] inner join [IT bedrijf].dbo.Organisation_Register on organisation_register.RegisterID = registers.ID inner join [IT bedrijf].dbo.Organisations on Organisation_Register.OrganisationID = Organisations.ID";
+            List<RegistersManagement> list = new List<RegistersManagement>();
+
+            string sql = "SELECT Registers.[ID],[RegisterName],[Device],[PurchaseDate],[ExpiresDate] FROM [IT bedrijf].[dbo].[Registers] WHERE NOT EXISTS (SELECT [OrganisationID] ,[RegisterID] ,[FromDate] ,[UntilDate]  FROM [IT bedrijf].dbo.Organisation_Register  WHERE [Registers].ID = Organisation_Register.RegisterID);";
             DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql);
 
             while (reader.Read())
             {
+                RegistersManagement reg = new RegistersManagement()
+                {
+                    Id = Int32.Parse(reader["ID"].ToString()),
+                    RegisterName = reader["RegisterName"].ToString(),
+                    Device = reader["Device"].ToString(),
+                    PurchaseDate = Convert.ToDateTime(reader["PurchaseDate"].ToString()),
+                    ExpiresDate = Convert.ToDateTime(reader["ExpiresDate"].ToString())
+                };
+                list.Add(reg);
+            }
+            reader.Close();
+            return list;
+        }
+        public static List<KassaPM> getKassasMetId(int id)
+        {
+            List<KassaPM> list = new List<KassaPM>();
+            string sql = "SELECT Registers.[ID],[RegisterName],[Device],[PurchaseDate],[ExpiresDate], Organisations.OrganisationName, Organisation_Register.FromDate, Organisation_Register.UntilDate, Organisation_Register.OrganisationID, [Organisations].ID ,[Login],[Password],[DbName],[DbLogin],[DbPassword],[Address] ,[Email],[Phone]  , Organisation_Register.OrganisationID , Organisation_Register.RegisterID FROM [IT bedrijf].[dbo].[Registers] inner join [IT bedrijf].dbo.Organisation_Register on organisation_register.RegisterID = registers.ID inner join [IT bedrijf].dbo.Organisations on Organisation_Register.OrganisationID = Organisations.ID where Organisations.ID =@Id";
+            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@Id", id);
+            DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql,par1);
+
+            while (reader.Read())
+            {
+                KassaPM pm = new KassaPM();
                 RegistersManagement reg = new RegistersManagement()
                 {
                     Id = Int32.Parse(reader["ID"].ToString()),
@@ -99,16 +123,15 @@ namespace nmct.ba.cashlessproject.WebApp.DataAccess
                     RegisterId = Int32.Parse(reader["RegisterId"].ToString()),
                     FromDate = DateTime.Parse(reader["FromDate"].ToString()),
                     UntilDate = DateTime.Parse(reader["UntilDate"].ToString())
-
                 };
 
-               
                 pm.Kassa = reg;
                 pm.Organisatie = org;
                 pm.Organisatie_Register = orgreg;
+                list.Add(pm);
             }
             reader.Close();
-            return pm;
+            return list;
         }
         private static RegistersManagement CreateKassa(IDataRecord record)
         {

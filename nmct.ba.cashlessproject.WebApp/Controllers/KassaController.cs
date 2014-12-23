@@ -18,6 +18,8 @@ namespace nmct.ba.cashlessproject.WebApp.Controllers
         {
             List<Organisations> listorganisations = VerenigingDA.getVerenigingen();
             ViewBag.VerenigingList = listorganisations;
+            List<RegistersManagement> listRegisterWithoutOrg = KassaDA.getKassasZonderVereniging();
+            ViewBag.KassaListZonderOrg = listRegisterWithoutOrg;
             List<KassaPM> list = KassaDA.getKassas();
             ViewBag.KassaList = list;
             return View();
@@ -43,6 +45,33 @@ namespace nmct.ba.cashlessproject.WebApp.Controllers
             }
             return RedirectToAction("Kassa");
         }
+        [HttpGet]
+        public ActionResult PerVereniging(int vereniging)
+        {
+            List<KassaPM> list = KassaDA.getKassasMetId(vereniging);
+            ViewBag.KassaList = list;
+            return View("Kassa");
+        }
+
+        [HttpGet]
+        public ActionResult Overzicht(int vereniging)
+        {
+            if (vereniging > 0)
+            {
+                List<KassaPM> list = KassaDA.getKassasMetId(vereniging);
+                ViewBag.KassaList = list;
+
+                Organisations o = VerenigingDA.getVerenigingenMetId(vereniging);
+                ViewBag.Vereniging = o; 
+                return View();
+            }
+            
+            //kzou hier een nieuwe view aanmaken die overzicht noemt.
+            //kga nog eens kijken  waarom hij die id niet will pakken momento 
+            //maak gewoon een nieuwe view overzicht waar je het KassaList veiwbag toont DONE :) graag gedaan ;) bye
+            return RedirectToAction("Kassa");
+        }
+
 
     }
 }

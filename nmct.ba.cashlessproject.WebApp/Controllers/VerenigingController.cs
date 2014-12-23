@@ -44,5 +44,30 @@ namespace nmct.ba.cashlessproject.WebApp.Controllers
             }
             return RedirectToAction("Vereniging");
         }
+
+        public ActionResult Bewerk(int id)
+        {
+            Organisations o = VerenigingDA.getVerenigingenMetId(id);
+            return View(o);
+        }
+        public ActionResult BewerkenOpslaan(int id,string login, string password, string DbName, string DbLogin, string DbPassword, string organisationName, string address, string email, string phone)
+        {
+            if (id>0 &&login != null && password != null && DbName != null && DbLogin != null && DbPassword != null && organisationName != null && address != null && email != null && phone != null)
+            {
+                Organisations o = new Organisations();
+                o.Id = id;
+                o.Address = address;
+                o.DbLogin = DbLogin;
+                o.DbName = DbName;
+                o.DbPassword = DbPassword;
+                o.Email = email;
+                o.Login = login;
+                o.OrganisationName = organisationName;
+                o.Password = password;
+                o.Phone = phone;
+                VerenigingDA.UpdateVereniging(o);
+            }
+            return RedirectToAction("Vereniging");
+        }
     }
 }
