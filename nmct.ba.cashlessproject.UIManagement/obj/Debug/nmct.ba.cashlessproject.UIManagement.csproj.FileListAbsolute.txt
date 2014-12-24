@@ -102,3 +102,5 @@ C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct
 C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIManagement\obj\Debug\WPF Template NMCT1.g.resources
 C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIManagement\obj\Debug\nmct.ba.cashlessproject.UIManagement.Properties.Resources.resources
 C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIManagement\obj\Debug\nmct.ba.cashlessproject.UIManagement.csproj.GenerateResource.Cache
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIManagement\bin\Debug\Thinktecture.IdentityModel.Client.dll
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIManagement\bin\Debug\Thinktecture.IdentityModel.Client.pdb

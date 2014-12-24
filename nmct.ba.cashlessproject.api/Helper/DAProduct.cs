@@ -104,7 +104,6 @@ namespace nmct.ba.cashlessproject.api.Helper
             double price = product.Price;
             int stock = product.Stock;
 
-
             string sql = "INSERT INTO [Klant].[dbo].[Products] VALUES(@ProductName, @Price, @Stock)";
 
             DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@Price", price);

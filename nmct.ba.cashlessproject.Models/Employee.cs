@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace nmct.ba.cashlessproject.Models
+namespace nmct.ba.cashlessproject.ModelsFout
 {
     public class Employee
     {

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Web;
-using nmct.ba.cashlessproject.Models;
 using System.Data;
+using nmct.ba.cashlessproject.Models;
 
 namespace nmct.ba.cashlessproject.api.Helper
 {
@@ -14,7 +14,7 @@ namespace nmct.ba.cashlessproject.api.Helper
         public static List<Employee> GetEmployee()
         {
             List<Employee> list = new List<Employee>();
-            string sql = "SELECT [Id],[EmployeeName],[Address],[Email],[Phone] FROM [Klant].[dbo].[Employee]";
+            string sql = "SELECT [Id],[EmployeeName],[Address],[Email],[Phone],[LoginCode] FROM [Klant].[dbo].[Employee]";
             DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql);
             while (reader.Read())
             {
@@ -27,7 +27,7 @@ namespace nmct.ba.cashlessproject.api.Helper
         public static Employee GetEmployee(int id)
         {
             Employee emp = new Employee();
-            string sql = "SELECT [Id],[EmployeeName],[Address],[Email],[Phone] FROM [Klant].[dbo].[Employee] where Id=@id";
+            string sql = "SELECT [Id],[EmployeeName],[Address],[Email],[Phone],[LoginCode] FROM [Klant].[dbo].[Employee] where Id=@id";
             DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@id", id);
             DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql,par1);
             while (reader.Read())
@@ -47,7 +47,8 @@ namespace nmct.ba.cashlessproject.api.Helper
                 EmployeeName = record["EmployeeName"].ToString(),
                 Address = record["Address"].ToString(),
                 Email = record["Email"].ToString(),
-                Phone = record["Phone"].ToString()
+                Phone = record["Phone"].ToString(),
+                LoginCode = Int32.Parse( record["LoginCode"].ToString())
             };
         }
 
@@ -59,16 +60,17 @@ namespace nmct.ba.cashlessproject.api.Helper
             string name = emp.EmployeeName;
             int id = emp.Id;
             string phone = emp.Phone;
+            int logincode = emp.LoginCode;
 
-
-            string sql = "UPDATE [Klant].[dbo].[Employee] SET EmployeeName = @Name, Email = @Email, Address = @Address, Phone = @Phone WHERE ID=@ID";
+            string sql = "UPDATE [Klant].[dbo].[Employee] SET LoginCode = @LoginCode, EmployeeName = @Name, Email = @Email, Address = @Address, Phone = @Phone WHERE ID=@ID";
             DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@Name", name);
             DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@Email", email);
             DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@Phone", phone);
             DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@Address", address);
             DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
+            DbParameter par6 = Database.AddParameter(CONNECTIONSTRING, "@LoginCode", logincode);
 
-            rowsaffected += Database.ModifyData(CONNECTIONSTRING, sql, par1, par2, par3, par4, par5);
+            rowsaffected += Database.ModifyData(CONNECTIONSTRING, sql, par1, par2, par3, par4, par5,par6);
 
             return rowsaffected;
         }
@@ -80,15 +82,18 @@ namespace nmct.ba.cashlessproject.api.Helper
             string name = emp.EmployeeName;
             int id = emp.Id;
             string phone = emp.Phone;
+            int logincode = emp.LoginCode;
 
-            string sql = "INSERT INTO [Klant].[dbo].[Employee] VALUES(@EmployeeName, @Address, @Email, @Phone)";
+            string sql = "INSERT INTO [Klant].[dbo].[Employee] ([EmployeeName],[Address],[Email],[Phone],[LoginCode] ) VALUES(@EmployeeName, @Address, @Email, @Phone, @LoginCode)";
 
             DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@EmployeeName", name);
             DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@Email", email);
             DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@Phone", phone);
             DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@Address", address);
+            DbParameter par6 = Database.AddParameter(CONNECTIONSTRING, "@LoginCode", logincode);
+
            // DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
-            Database.InsertData(CONNECTIONSTRING, sql, par1, par2, par3, par4);
+            Database.InsertData(CONNECTIONSTRING, sql, par1, par2, par3, par4,par6);
         }
 
         public static void DeleteEmployee(int idMedewerker)

@@ -44,5 +44,14 @@ namespace nmct.ba.cashlessproject.Models
             get { return _phone; }
             set { _phone = value; }
         }
+
+        private int _loginCode;
+
+        public int LoginCode
+        {
+            get { return _loginCode; }
+            set { _loginCode = value; }
+        }
+
     }
 }

@@ -166,6 +166,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Providers\SimpleAuthorizationServerProvider.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Helper\DAMedewerker.cs" />
     <Compile Include="Helper\DAProduct.cs" />
     <Compile Include="Helper\Database.cs" />
+    <Compile Include="Helper\VerenigingDA.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -289,9 +291,13 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nmct.ba.cashlessproject.Models\nmct.ba.cashlessproject.Models.csproj">
-      <Project>{5f92ae14-c961-45bf-9e54-02aa0a0aba1f}</Project>
-      <Name>nmct.ba.cashlessproject.Models</Name>
+    <ProjectReference Include="..\nmct.ba.cashlessproject.apicall\nmct.ba.cashlessproject.apicall.csproj">
+      <Project>{366750c6-c5b5-4049-96c2-62f73d88a869}</Project>
+      <Name>nmct.ba.cashlessproject.apicall</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\nmct.ba.cashlessproject.model\nmct.ba.cashlessproject.model.csproj">
+      <Project>{e8aeb382-43c9-4891-b272-570b17f3f587}</Project>
+      <Name>nmct.ba.cashlessproject.model</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

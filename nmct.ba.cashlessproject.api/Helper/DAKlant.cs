@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using nmct.ba.cashlessproject.Models;
 using System.Data;
 using System.Data.Common;
+using nmct.ba.cashlessproject.Models;
+using System.Text;
 
 namespace nmct.ba.cashlessproject.api.Helper
 {
@@ -33,8 +34,7 @@ namespace nmct.ba.cashlessproject.api.Helper
                 CustomerName = record["CustomerName"].ToString(),
                 Address = record["Address"].ToString(),
                 Balance = Convert.ToInt32(record["Balance"].ToString()),
-                Picture = record["Picture"].ToString()
-
+                Picture = Encoding.ASCII.GetBytes(record["Picture"].ToString()).ToArray()
             };
         }
 
@@ -45,7 +45,7 @@ namespace nmct.ba.cashlessproject.api.Helper
             int id = kl.Id;
             string name = kl.CustomerName;
             double balance = kl.Balance;
-            string picture = kl.Picture;
+            byte[] picture = kl.Picture;
             string address = kl.Address;
             
 

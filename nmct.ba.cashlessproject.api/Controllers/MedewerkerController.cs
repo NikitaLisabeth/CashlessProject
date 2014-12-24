@@ -29,7 +29,6 @@ namespace nmct.ba.cashlessproject.api.Controllers
         {
             DAMedewerker.AddNewEmployee(emp);
             return new HttpResponseMessage(HttpStatusCode.Created);
-        
         }
         public HttpResponseMessage Delete(int id)
         {

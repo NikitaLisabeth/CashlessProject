@@ -1,0 +1,5 @@
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.apicall\bin\Debug\nmct.ba.cashlessproject.apicall.dll
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.apicall\bin\Debug\nmct.ba.cashlessproject.apicall.pdb
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.apicall\obj\Debug\nmct.ba.cashlessproject.apicall.csprojResolveAssemblyReference.cache
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.apicall\obj\Debug\nmct.ba.cashlessproject.apicall.dll
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.apicall\obj\Debug\nmct.ba.cashlessproject.apicall.pdb
