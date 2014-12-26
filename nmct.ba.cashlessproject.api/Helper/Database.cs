@@ -171,7 +171,7 @@ namespace nmct.ba.cashlessproject.api.Helper
             }
         }
 
-        public static int ModifyData(DbTransaction trans, string sql, params DbParameter[] parameters)
+        public static int ModifyDataTrans(DbTransaction trans, string sql, params DbParameter[] parameters)
         {
             DbCommand command = null;
             try

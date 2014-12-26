@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.IO;
 using System.Linq;
+using System.Web.Hosting;
 
 namespace nmct.ba.cashlessproject.WebApp.DataAccess
 {
@@ -91,8 +93,52 @@ namespace nmct.ba.cashlessproject.WebApp.DataAccess
             DbParameter par7 = Database.AddParameter(CONNECTIONSTRING, "@Address", o.Address);
             DbParameter par8 = Database.AddParameter(CONNECTIONSTRING, "@Email", o.Email);
             DbParameter par9 = Database.AddParameter(CONNECTIONSTRING, "@Phone", o.Phone);
-
+            CreateDatabase(o);
             return Database.InsertData(CONNECTIONSTRING, sql, par1, par2, par3, par4, par5, par6, par7, par8, par9);
         }
+
+        private static void CreateDatabase(Organisations o)
+        {
+            // create the actual database
+            string create = File.ReadAllText(HostingEnvironment.MapPath(@"~/App_Data/create.txt")); //only for the web
+           // string create = File.ReadAllText(@"..\..\Data\create.txt"); // only for desktop
+            string sql = create.Replace("@@DbName", o.DbName).Replace("@@DbLogin", o.DbLogin).Replace("@@DbPassword", o.DbPassword);
+            foreach (string commandText in RemoveGo(sql))
+            {
+                Database.ModifyData(Database.GetConnection("AdminDB"), commandText);
+            }
+
+            // create login, user and tables
+            DbTransaction trans = null;
+            try
+            {
+                trans = Database.BeginTransaction("AdminDB");
+
+                string fill = File.ReadAllText(HostingEnvironment.MapPath(@"~/App_Data/fill.txt")); // only for the web
+                //string fill = File.ReadAllText(@"..\..\Data\fill.txt"); // only for desktop
+                string sql2 = fill.Replace("@@DbName", o.DbName).Replace("@@DbLogin", o.DbLogin).Replace("@@DbPassword", o.DbPassword);
+
+                foreach (string commandText in RemoveGo(sql2))
+                {
+                    Database.ModifyData(trans, commandText);
+                }
+
+                trans.Commit();
+            }
+            catch (Exception ex)
+            {
+                trans.Rollback();
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private static string[] RemoveGo(string input)
+        {
+            //split the script on "GO" commands
+            string[] splitter = new string[] { "\r\nGO\r\n" };
+            string[] commandTexts = input.Split(splitter, StringSplitOptions.RemoveEmptyEntries);
+            return commandTexts;
+        }
+
     }
 }
