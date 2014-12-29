@@ -3,10 +3,9 @@
     ViewBag.Title = "Kassa";
 }
 
-<h2>Kassa</h2>
 <h3>Lijst van kassa's met een vereniging</h3>
 @using (Html.BeginForm("Overzicht", "Kassa", FormMethod.Get)) { 
-    <select name="vereniging">
+    <select class="form-control" name="vereniging">
         <option value="0">Kies een vereniging</option>
         @foreach (var item in ViewBag.VerenigingList)
         {
@@ -14,10 +13,11 @@
                 @item.OrganisationName
             </option>
         }
-    </select>
-    <input type="submit" value="Kies" />
+    </select> <br/>
+    <input class="btn btn-default" type="submit" value="Kies" />
 }
-<table width="1200">
+<br />
+<table class="table table-hover" >
     <tr>
         <th>ID</th>
         <th>Naam kassa</th>
@@ -37,13 +37,13 @@
             <td>@item.Kassa.PurchaseDate</td>
             <td>@item.Kassa.ExpiresDate</td>
             <td>@item.Organisatie.OrganisationName</td>
-              <td><a href="/kassa/edit">Kies andere vereniging</a></td>
+            <td><a href="/kassa/edit">Kies andere vereniging</a></td>
         </tr>
     }
 </table>
 
 <h3>Lijst van kassa's zonder vereniging</h3>
-<table width="1200">
+<table class="table table-hover">
     <tr>
         <th>ID</th>
         <th>Naam kassa</th>

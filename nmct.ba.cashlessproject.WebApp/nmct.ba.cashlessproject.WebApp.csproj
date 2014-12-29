@@ -249,6 +249,7 @@
     <Content Include="Views\Vereniging\Bewerk.cshtml" />
     <Content Include="Views\Kassa\Overzicht.cshtml" />
     <Content Include="Views\Kassa\Edit.cshtml" />
+    <Content Include="Views\Vereniging\Details.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

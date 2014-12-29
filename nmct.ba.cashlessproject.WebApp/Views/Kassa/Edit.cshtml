@@ -7,7 +7,7 @@
     <p>
         Selecteer een kassa
     <p />
-    <select name="kassa">
+    <select class="form-control" name="kassa">
         @foreach (var item in ViewBag.listkassa)
         {
             <option value="@item.Id">@item.RegisterName</option>
@@ -17,7 +17,7 @@
     <p>
         Selecteer een vereniging
     </p>
-    <select name="vereniging">
+    <select class="form-control" name="vereniging">
         @foreach (var item in ViewBag.listorganisatie)
         {
             <option value="@item.Id">@item.OrganisationName</option>
@@ -27,15 +27,15 @@
     <p>
         Vanaf:
     </p>
-    <input name="vanaf" type="date" min="1/1/1900"/>
-    <br /><br />
+    <input class="form-control" name="vanaf" type="date" min="1/1/1900" />
+    <br />
     <p>
         Tot:
     </p>
-    <input name="tot" type="date" min="1/1/1900" />
+    <input class="form-control" name="tot" type="date" min="1/1/1900" />
     <div>
         <br />
-        <input type="submit" value="Koppelen" />
+        <input class="btn btn-default" type="submit" value="Koppelen" />
     </div>
 
 </form>

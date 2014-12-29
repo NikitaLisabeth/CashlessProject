@@ -110,7 +110,7 @@ namespace nmct.ba.cashlessproject.api.Helper
             DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@ProductName", naam);
             DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@Stock", stock);
             Database.InsertData(CONNECTIONSTRING, sql, par1, par2, par5);
-
+            //Categorieen table wordt standaard ingevuld door het IT bedrijf
             string sql2 = "insert into Klant.dbo.Product_Category values(@Category);";
             DbParameter par21 = Database.AddParameter(CONNECTIONSTRING, "@Id", id);
             DbParameter par23;
@@ -122,9 +122,7 @@ namespace nmct.ba.cashlessproject.api.Helper
                  par23 = Database.AddParameter(CONNECTIONSTRING, "@Category", 2);
             }
             
-            Database.InsertData(CONNECTIONSTRING, sql2, par23);
-
-            
+            Database.InsertData(CONNECTIONSTRING, sql2, par23);            
         }
 
         public static List<string> GetCategorie()

@@ -17,13 +17,26 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Beheer", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                    <li class="dropdown">
+                        <a href="~/Views/kassa/kassa.cshtml" class="dropdown-toggle" data-toggle="dropdown">Kassa's</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Overzicht", "Kassa", "Kassa")</li>
+                            <li>@Html.ActionLink("Toevoegen", "toevoegen", "Kassa")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="~/Views/Vereniging/Vereniging.cshtml" class="dropdown-toggle" data-toggle="dropdown">Verenigingen</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Overzicht", "Vereniging", "Vereniging")</li>
+                            <li>@Html.ActionLink("Toevoegen", "toevoegen", "Vereniging")</li>
+                        </ul>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
