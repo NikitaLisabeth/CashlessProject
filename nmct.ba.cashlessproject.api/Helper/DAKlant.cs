@@ -6,17 +6,28 @@ using System.Data;
 using System.Data.Common;
 using nmct.ba.cashlessproject.Models;
 using System.Text;
+using System.Configuration;
+using System.Security.Claims;
 
 namespace nmct.ba.cashlessproject.api.Helper
 {
     public class DAKlant
     {
+        private static ConnectionStringSettings CreateConnectionString(IEnumerable<Claim> claims)
+        {
+            string dblogin = claims.FirstOrDefault(c => c.Type == "dblogin").Value;
+            string dbpass = claims.FirstOrDefault(c => c.Type == "dbpass").Value;
+            string dbname = claims.FirstOrDefault(c => c.Type == "dbname").Value;
+            return Database.CreateConnectionString("System.Data.SqlClient", @"NIKITAPC", dbname, dblogin, dbpass);
+
+            //return Database.CreateConnectionString("System.Data.SqlClient", @"NIKITAPC", Cryptography.Decrypt(dbname), Cryptography.Decrypt(dblogin), Cryptography.Decrypt(dbpass));
+        }
         private const string CONNECTIONSTRING = "KlantConnection";
-        public static List<Customers> GetKlanten()
+        public static List<Customers> GetKlanten(IEnumerable<Claim> claims)
         {
             List<Customers> list = new List<Customers>();
-            string sql = "SELECT[Id],[CustomerName],[Address],[Balance],[Picture]FROM [Klant].[dbo].[Customers]";
-            DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql);
+            string sql = "SELECT[Id],[CustomerName],[Address],[Balance],[Picture]FROM [Customers]";
+            DbDataReader reader = Database.GetData(Database.GetConnection(CreateConnectionString(claims)), sql);
             while (reader.Read())
             {
                 list.Add(Create(reader));
@@ -38,7 +49,7 @@ namespace nmct.ba.cashlessproject.api.Helper
             };
         }
 
-        public static int UpdateAccount(Customers kl)
+        public static int UpdateAccount(Customers kl, IEnumerable<Claim> claims)
         {
             int rowsaffected = 0;
 
@@ -56,12 +67,12 @@ namespace nmct.ba.cashlessproject.api.Helper
             DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@Address", address);
             DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
 
-            rowsaffected += Database.ModifyData(CONNECTIONSTRING, sql, par1, par2, par3, par4, par5);
+            rowsaffected += Database.ModifyData(Database.GetConnection(CreateConnectionString(claims)), sql, par1, par2, par3, par4, par5);
 
             return rowsaffected;
         }
 
-        public static void AddNewCustomer(Customers kl)
+        public static void AddNewCustomer(Customers kl, IEnumerable<Claim> claims)
         {
             int id = kl.Id;
             string name = kl.CustomerName;
@@ -77,7 +88,7 @@ namespace nmct.ba.cashlessproject.api.Helper
             DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@Balance", balance);
             DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@Address", address);
 
-            Database.InsertData(CONNECTIONSTRING, sql, par2, par3, par4, par5);
+            Database.InsertData(Database.GetConnection(CreateConnectionString(claims)), sql, par2, par3, par4, par5);
         }
     }
 }

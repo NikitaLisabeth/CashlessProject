@@ -1,21 +1,32 @@
 ﻿using nmct.ba.cashlessproject.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 
 namespace nmct.ba.cashlessproject.api.Helper
 {
     public class DAProduct
     {
+        private static ConnectionStringSettings CreateConnectionString(IEnumerable<Claim> claims)
+        {
+            string dblogin = claims.FirstOrDefault(c => c.Type == "dblogin").Value;
+            string dbpass = claims.FirstOrDefault(c => c.Type == "dbpass").Value;
+            string dbname = claims.FirstOrDefault(c => c.Type == "dbname").Value;
+            return Database.CreateConnectionString("System.Data.SqlClient", @"NIKITAPC", dbname, dblogin, dbpass);
+
+            //return Database.CreateConnectionString("System.Data.SqlClient", @"NIKITAPC", Cryptography.Decrypt(dbname), Cryptography.Decrypt(dblogin), Cryptography.Decrypt(dbpass));
+        }
         private const string CONNECTIONSTRING = "KlantConnection";
-        public static List<Products> GetProducts()
+        public static List<Products> GetProducts(IEnumerable<Claim> claims)
         {
             List<Products> list = new List<Products>();
-            string sql = "SELECT Products.[Id] ,[ProductName],[Price],[Stock], category FROM [Klant].[dbo].[Products] inner join Klant.dbo.Product_Category on Products.id = Product_Category.ProductId inner join Klant.dbo.Category on Product_Category.CategoryId  = Category.id;";
-            DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql);
+            string sql = "SELECT Products.[Id] ,[ProductName],[Price],[Stock], category FROM [Products] inner join Product_Category on Products.id = Product_Category.ProductId inner join Category on Product_Category.CategoryId  = Category.id;";
+            DbDataReader reader = Database.GetData(Database.GetConnection(CreateConnectionString(claims)), sql);
             while (reader.Read())
             {
                 list.Add(Create(reader));
@@ -24,13 +35,13 @@ namespace nmct.ba.cashlessproject.api.Helper
             return list;
 
         }
-        public static Products GetProducts(int id)
+        public static Products GetProducts(int id, IEnumerable<Claim> claims)
         {
             Products pr = new Products();
-            string sql = "SELECT [Id],[ProductName],[Price],[Category],[Stock] FROM [Klant].[dbo].[Products] where Id=@id";
+            string sql = "SELECT [Id],[ProductName],[Price],[Category],[Stock] FROM [Products] where Id=@id";
             DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@id", id);
 
-            DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql,par1);
+            DbDataReader reader = Database.GetData(Database.GetConnection(CreateConnectionString(claims)), sql, par1);
             while (reader.Read())
             {
                 pr =Create(reader);
@@ -38,15 +49,15 @@ namespace nmct.ba.cashlessproject.api.Helper
             reader.Close();
             return pr;
         }
-        public static void DeleteProduct(int id)
+        public static void DeleteProduct(int id, IEnumerable<Claim> claims)
         {
-            string sql = "DELETE FROM [Klant].[dbo].[Products] WHERE ID =@ID";
+            string sql = "DELETE FROM [Products] WHERE ID =@ID";
             DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
-            Database.InsertData(CONNECTIONSTRING, sql, par1);
+            Database.InsertData(Database.GetConnection(CreateConnectionString(claims)), sql, par1);
 
-            string sql2 = "DELETE FROM [Klant].[dbo].[Product_Category] WHERE [ProductId] =@ID";
+            string sql2 = "DELETE FROM [Product_Category] WHERE [ProductId] =@ID";
             DbParameter par21 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
-            Database.InsertData(CONNECTIONSTRING, sql2, par21);
+            Database.InsertData(Database.GetConnection(CreateConnectionString(claims)), sql2, par21);
 
         }
         private static Products Create(IDataRecord record)
@@ -61,7 +72,7 @@ namespace nmct.ba.cashlessproject.api.Helper
 
             };
         }
-        public static int UpdateProduct(Products product)
+        public static int UpdateProduct(Products product, IEnumerable<Claim> claims)
         {
             int rowsaffected = 0;
 
@@ -72,17 +83,17 @@ namespace nmct.ba.cashlessproject.api.Helper
             int stock = product.Stock;
 
 
-            string sql = "UPDATE [Klant].[dbo].[Products] SET Price = @Price, ProductName = @ProductName, Stock = @Stock WHERE Id=@Id";
+            string sql = "UPDATE [Products] SET Price = @Price, ProductName = @ProductName, Stock = @Stock WHERE Id=@Id";
             DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@Price", price);
             DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@ProductName", naam);
             DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@Id", id);
             DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@Category", category);
             DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@Stock", stock);
 
-            rowsaffected += Database.ModifyData(CONNECTIONSTRING, sql, par1, par2, par3, par5);
+            rowsaffected += Database.ModifyData(Database.GetConnection(CreateConnectionString(claims)), sql, par1, par2, par3, par5);
 
 
-            string sql2 = "UPDATE [Klant].[dbo].[Product_Category] SET CategoryId = @CategoryId WHERE ProductId=@Id";
+            string sql2 = "UPDATE [Product_Category] SET CategoryId = @CategoryId WHERE ProductId=@Id";
             DbParameter par21 = Database.AddParameter(CONNECTIONSTRING, "@Id", id);
             DbParameter par22;
             if (category == "Drank")
@@ -93,10 +104,10 @@ namespace nmct.ba.cashlessproject.api.Helper
             {
                 par22 = Database.AddParameter(CONNECTIONSTRING, "@CategoryId", 2);
             }
-            rowsaffected += Database.ModifyData(CONNECTIONSTRING, sql2, par21, par22);
+            rowsaffected += Database.ModifyData(Database.GetConnection(CreateConnectionString(claims)), sql2, par21, par22);
             return rowsaffected;
         }
-        public static void AddNewProduct(Products product)
+        public static void AddNewProduct(Products product, IEnumerable<Claim> claims)
         {
             int id = product.Id;
             string naam = product.ProductName;
@@ -104,14 +115,14 @@ namespace nmct.ba.cashlessproject.api.Helper
             double price = product.Price;
             int stock = product.Stock;
 
-            string sql = "INSERT INTO [Klant].[dbo].[Products] VALUES(@ProductName, @Price, @Stock)";
+            string sql = "INSERT INTO [Products] VALUES(@ProductName, @Price, @Stock)";
 
             DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@Price", price);
             DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@ProductName", naam);
             DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@Stock", stock);
-            Database.InsertData(CONNECTIONSTRING, sql, par1, par2, par5);
+            Database.InsertData(Database.GetConnection(CreateConnectionString(claims)), sql, par1, par2, par5);
             //Categorieen table wordt standaard ingevuld door het IT bedrijf
-            string sql2 = "insert into Klant.dbo.Product_Category values(@Category);";
+            string sql2 = "insert into Product_Category values(@Category);";
             DbParameter par21 = Database.AddParameter(CONNECTIONSTRING, "@Id", id);
             DbParameter par23;
             if(category == "Drank"){
@@ -121,8 +132,8 @@ namespace nmct.ba.cashlessproject.api.Helper
             {
                  par23 = Database.AddParameter(CONNECTIONSTRING, "@Category", 2);
             }
-            
-            Database.InsertData(CONNECTIONSTRING, sql2, par23);            
+
+            Database.InsertData(Database.GetConnection(CreateConnectionString(claims)), sql2, par23);            
         }
 
         public static List<string> GetCategorie()

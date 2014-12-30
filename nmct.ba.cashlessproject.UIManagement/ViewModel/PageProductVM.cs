@@ -22,7 +22,11 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
 
          public PageProductVM()
         {
-            GetProducten();
+            if (ApplicationVM.token != null)
+            {
+                GetProducten();
+            }
+
         }
          private ObservableCollection<Products> _products;
 
@@ -36,6 +40,7 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
          {
              using (HttpClient client = new HttpClient())
              {
+                 client.SetBearerToken(ApplicationVM.token.AccessToken);
                  HttpResponseMessage response = await client.GetAsync("http://localhost:1817/api/product");
                  if (response.IsSuccessStatusCode)
                  {
@@ -56,6 +61,8 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
          {
              using (HttpClient client = new HttpClient())
              {
+                 client.SetBearerToken(ApplicationVM.token.AccessToken);
+
                  HttpResponseMessage response = await client.DeleteAsync("http://localhost:1817/api/product/" + SelectedProduct.Id);
                  if (response.IsSuccessStatusCode)
                  {
@@ -76,6 +83,8 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
          {
              using (HttpClient client = new HttpClient())
              {
+                 client.SetBearerToken(ApplicationVM.token.AccessToken);
+
                  Products kl = SelectedProduct;
                  string input = JsonConvert.SerializeObject(kl);
                  HttpResponseMessage response = await client.PutAsync("http://localhost:1817/api/product", new StringContent(input, Encoding.UTF8, "application/json"));
@@ -91,6 +100,8 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
              Products newProduct = SelectedProduct;
              using (HttpClient client = new HttpClient())
              {
+                 client.SetBearerToken(ApplicationVM.token.AccessToken);
+
                  string emp = JsonConvert.SerializeObject(newProduct);
                  HttpResponseMessage response = await client.PostAsync("http://localhost:1817/api/product", new StringContent(emp, Encoding.UTF8, "application/json"));
                  if (response.IsSuccessStatusCode)

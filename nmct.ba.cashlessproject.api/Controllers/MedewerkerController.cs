@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 
 namespace nmct.ba.cashlessproject.api.Controllers
@@ -13,26 +14,31 @@ namespace nmct.ba.cashlessproject.api.Controllers
     {
         public List<Employee> Get()
         {
-            return DAMedewerker.GetEmployee();
+            ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;
+            return DAMedewerker.GetEmployee(p.Claims);
         }
         public Employee Get(int id)
         {
-            return DAMedewerker.GetEmployee(id);
+            ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;
+            return DAMedewerker.GetEmployee(id, p.Claims);
         }
         public HttpResponseMessage Put(Employee emp)
         {
-            DAMedewerker.UpdateEmployee(emp);
+            ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;
+            DAMedewerker.UpdateEmployee(emp, p.Claims);
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         public HttpResponseMessage Post(Employee emp)
         {
-            DAMedewerker.AddNewEmployee(emp);
+            ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;
+            DAMedewerker.AddNewEmployee(emp,p.Claims);
             return new HttpResponseMessage(HttpStatusCode.Created);
         }
         public HttpResponseMessage Delete(int id)
         {
-            DAMedewerker.DeleteEmployee(id);
+            ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;
+            DAMedewerker.DeleteEmployee(id, p.Claims);
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }

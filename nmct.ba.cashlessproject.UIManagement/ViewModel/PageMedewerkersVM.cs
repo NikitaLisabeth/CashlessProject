@@ -16,7 +16,11 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
     {
          public PageMedewerkersVM()
         {
-            GetMedewerkers();
+            if (ApplicationVM.token != null)
+            {
+                GetMedewerkers();
+            }
+            
         }
         public string Name
         {
@@ -35,6 +39,7 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ApplicationVM.token.AccessToken);
                 HttpResponseMessage response = await client.GetAsync("http://localhost:1817/api/medewerker");
                 if (response.IsSuccessStatusCode)
                 {
@@ -64,6 +69,7 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
             {
                 Employee emp = SelectedMedewerker;
                 string input = JsonConvert.SerializeObject(emp);
+                client.SetBearerToken(ApplicationVM.token.AccessToken);
                 HttpResponseMessage response = await client.PutAsync("http://localhost:1817/api/medewerker", new StringContent(input, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {
@@ -78,6 +84,7 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 string emp = JsonConvert.SerializeObject(newEmployee);
+                client.SetBearerToken(ApplicationVM.token.AccessToken);
                 HttpResponseMessage response = await client.PostAsync("http://localhost:1817/api/medewerker", new StringContent(emp, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {
@@ -90,6 +97,7 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ApplicationVM.token.AccessToken);
                 HttpResponseMessage response = await client.DeleteAsync("http://localhost:1817/api/medewerker/"+ SelectedMedewerker.Id);
                 if (response.IsSuccessStatusCode)
                 {

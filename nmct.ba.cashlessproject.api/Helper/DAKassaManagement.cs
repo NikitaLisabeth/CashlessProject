@@ -1,21 +1,32 @@
 ﻿using nmct.ba.cashlessproject.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 
 namespace nmct.ba.cashlessproject.api.Helper
 {
     public class DAKassaManagement
     {
+        private static ConnectionStringSettings CreateConnectionString(IEnumerable<Claim> claims)
+        {
+            string dblogin = claims.FirstOrDefault(c => c.Type == "dblogin").Value;
+            string dbpass = claims.FirstOrDefault(c => c.Type == "dbpass").Value;
+            string dbname = claims.FirstOrDefault(c => c.Type == "dbname").Value;
+            return Database.CreateConnectionString("System.Data.SqlClient", @"NIKITAPC", dbname, dblogin, dbpass);
+
+            //return Database.CreateConnectionString("System.Data.SqlClient", @"NIKITAPC", Cryptography.Decrypt(dbname), Cryptography.Decrypt(dblogin), Cryptography.Decrypt(dbpass));
+        }
         private const string CONNECTIONSTRING = "KlantConnection";
-        public static List<RegistersKlant> GetKassasManagement()
+        public static List<RegistersKlant> GetKassasManagement(IEnumerable<Claim> claims)
         {
             List<RegistersKlant> list = new List<RegistersKlant>();
-            string sql = "SELECT RegisterId,EmployeeId, EmployeeName, FromDate, UntilDate, RegisterName, Device FROM [Klant].[dbo].Register_Employee Inner join [Klant].[dbo].[Employee]	on Employee.Id = Register_Employee.EmployeeId INNER JOIN Klant.dbo.Registers ON Registers.Id = Register_Employee.RegisterId";
-            DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql);
+            string sql = "SELECT RegisterId,EmployeeId, EmployeeName, FromDate, UntilDate, RegisterName, Device FROM Register_Employee Inner join [Employee]	on Employee.Id = Register_Employee.EmployeeId INNER JOIN Registers ON Registers.Id = Register_Employee.RegisterId";
+            DbDataReader reader = Database.GetData(Database.GetConnection(CreateConnectionString(claims)), sql);
             while (reader.Read())
             {
                 list.Add(Create(reader));
@@ -40,7 +51,7 @@ namespace nmct.ba.cashlessproject.api.Helper
                 
             };
         }
-        public static int UpdateAccount(RegistersKlant kassa)
+        public static int UpdateAccount(RegistersKlant kassa, IEnumerable<Claim> claims)
         {
             int rowsaffected = 0;
 
@@ -58,9 +69,9 @@ namespace nmct.ba.cashlessproject.api.Helper
             DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@Device", device);
             DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
 
-            rowsaffected += Database.ModifyData(CONNECTIONSTRING, sql, par1, par2, par3);
+            rowsaffected += Database.ModifyData(Database.GetConnection(CreateConnectionString(claims)), sql, par1, par2, par3);
 
-            string sql1 = "UPDATE [Klant].[dbo].[Register_Employee] SET EmployeeId = @EmployeeId, FromDate = @FromDate, UntilDate = @UntilDate WHERE RegisterId=@RegisterId";
+            string sql1 = "UPDATE [Register_Employee] SET EmployeeId = @EmployeeId, FromDate = @FromDate, UntilDate = @UntilDate WHERE RegisterId=@RegisterId";
             DbParameter par11 = Database.AddParameter(CONNECTIONSTRING, "@RegisterId", id);
             DbParameter par12 = Database.AddParameter(CONNECTIONSTRING, "@EmployeeId", medewerkerid);
             DbParameter par13 = Database.AddParameter(CONNECTIONSTRING, "@FromDate", from);
@@ -68,7 +79,7 @@ namespace nmct.ba.cashlessproject.api.Helper
 
 
 
-            rowsaffected += Database.ModifyData(CONNECTIONSTRING, sql1, par1, par2, par3);
+            rowsaffected += Database.ModifyData(Database.GetConnection(CreateConnectionString(claims)), sql1, par1, par2, par3);
 
             return rowsaffected;
         }

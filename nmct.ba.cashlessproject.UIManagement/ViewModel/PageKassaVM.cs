@@ -16,7 +16,10 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
     {
         public PageKassaVM()
         {
-            GetKassas();
+            if (ApplicationVM.token != null)
+            {
+                GetKassas();
+            }
         }
         public string Name
         {
@@ -34,6 +37,7 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ApplicationVM.token.AccessToken);
                 HttpResponseMessage response = await client.GetAsync("http://localhost:1817/api/kassa");
                 if (response.IsSuccessStatusCode)
                 {
@@ -62,6 +66,7 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 RegistersKlant kl = SelectedKassa;
+                client.SetBearerToken(ApplicationVM.token.AccessToken);
 
                 //je kunt geen object over het internet sturen, enkel xml of json (kort gezegd)
 

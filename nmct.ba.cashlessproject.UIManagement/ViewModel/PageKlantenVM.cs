@@ -16,7 +16,11 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
     {
         public PageKlantenVM()
         {
-            GetKlanten();
+            if (ApplicationVM.token != null)
+            {
+                GetKlanten();
+            }
+
         }
         public string Name
         {
@@ -34,6 +38,7 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ApplicationVM.token.AccessToken);
                 HttpResponseMessage response = await client.GetAsync("http://localhost:1817/api/klant");
                 if (response.IsSuccessStatusCode)
                 {
@@ -62,6 +67,7 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 Customers kl = SelectedKlant;
+                client.SetBearerToken(ApplicationVM.token.AccessToken);
                 string input = JsonConvert.SerializeObject(kl);
                 HttpResponseMessage response = await client.PutAsync("http://localhost:1817/api/klant", new StringContent(input, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
@@ -74,8 +80,10 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
         public async void AddKlant()
         {
             Customers newKlant = SelectedKlant;
+            
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ApplicationVM.token.AccessToken);
                 string emp = JsonConvert.SerializeObject(newKlant);
                 HttpResponseMessage response = await client.PostAsync("http://localhost:1817/api/klant", new StringContent(emp, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)

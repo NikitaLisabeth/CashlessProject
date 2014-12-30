@@ -10,7 +10,23 @@ namespace nmct.ba.cashlessproject.api.Helper
 {
     public class Database
     {
-        private static DbConnection GetConnection(string ConnectionString)
+        public static ConnectionStringSettings CreateConnectionString(string provider, string server, string database, string username, string password)
+        {
+            ConnectionStringSettings settings = new ConnectionStringSettings();
+            settings.ProviderName = provider;
+            settings.ConnectionString = "Data Source=" + server + ";Initial Catalog=" + database + ";User ID=" + username + ";Password=" + password;
+            return settings;
+        }
+
+        public static DbConnection GetConnection(ConnectionStringSettings Settings)
+        {
+            DbConnection con = DbProviderFactories.GetFactory(Settings.ProviderName).CreateConnection();
+            con.ConnectionString = Settings.ConnectionString;
+            con.Open();
+
+            return con;
+        }
+        public static DbConnection GetConnection(string ConnectionString)
         {
             ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings[ConnectionString];
             DbConnection con = DbProviderFactories.GetFactory(settings.ProviderName).CreateConnection();
@@ -28,7 +44,41 @@ namespace nmct.ba.cashlessproject.api.Helper
                 con = null;
             }
         }
+        public static DbDataReader GetData(DbConnection con, string sql, params DbParameter[] parameters)
+        {
+            DbCommand command = null;
+            DbDataReader reader = null;
 
+            try
+            {
+                command = BuildCommand(con, sql, parameters);
+                reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+                return reader;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                if (reader != null)
+                    reader.Close();
+                if (command != null)
+                    ReleaseConnection(command.Connection);
+                throw;
+            }
+        }
+        private static DbCommand BuildCommand(DbConnection con, string sql, params DbParameter[] parameters)
+        {
+            DbCommand command = con.CreateCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = sql;
+
+            if (parameters != null)
+            {
+                command.Parameters.AddRange(parameters);
+            }
+
+            return command;
+        }
         private static DbCommand BuildCommand(string ConnectionString, string sql, params DbParameter[] parameters)
         {
             DbCommand command = GetConnection(ConnectionString).CreateCommand();
@@ -65,7 +115,49 @@ namespace nmct.ba.cashlessproject.api.Helper
                 throw;
             }
         }
+        public static int InsertData(DbConnection con, string sql, params DbParameter[] parameters)
+        {
+            DbCommand command = null;
+            try
+            {
+                command = BuildCommand(con, sql, parameters);
+                command.ExecuteNonQuery();
 
+                command.Parameters.Clear();
+                command.CommandText = "SELECT @@IDENTITY";
+
+                int identity = Convert.ToInt32(command.ExecuteScalar());
+                command.Connection.Close();
+
+                return identity;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                if (command != null)
+                    ReleaseConnection(command.Connection);
+                return 0;
+            }
+        }
+        public static int ModifyData(DbConnection con, string sql, params DbParameter[] parameters)
+        {
+            DbCommand command = null;
+            try
+            {
+                command = BuildCommand(con, sql, parameters);
+                int affected = command.ExecuteNonQuery();
+                command.Connection.Close();
+
+                return affected;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                if (command != null)
+                    ReleaseConnection(command.Connection);
+                return 0;
+            }
+        }
         public static int ModifyData(string ConnectionString, string sql, params DbParameter[] parameters)
         {
             DbCommand command = null;

@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using nmct.ba.cashlessproject.api.Helper;
 using nmct.ba.cashlessproject.Models;
+using System.Security.Claims;
 
 namespace nmct.ba.cashlessproject.api.Controllers
 {
@@ -13,25 +14,35 @@ namespace nmct.ba.cashlessproject.api.Controllers
     {
         public List<Products> Get()
         {
-            return DAProduct.GetProducts();
+            ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;
+
+            return DAProduct.GetProducts(p.Claims);
         }
         public HttpResponseMessage Put(Products product)
         {
-            DAProduct.UpdateProduct(product);
+            ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;
+
+            DAProduct.UpdateProduct(product, p.Claims);
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
         public Products Get(int id)
         {
-            return DAProduct.GetProducts(id);
+            ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;
+
+            return DAProduct.GetProducts(id, p.Claims);
         }
         public HttpResponseMessage Delete(int id)
         {
-            DAProduct.DeleteProduct(id);
+            ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;
+
+            DAProduct.DeleteProduct(id, p.Claims);
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
         public HttpResponseMessage Post(Products product)
         {
-            DAProduct.AddNewProduct(product);
+            ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;
+
+            DAProduct.AddNewProduct(product, p.Claims);
             return new HttpResponseMessage(HttpStatusCode.Created);
         }
        

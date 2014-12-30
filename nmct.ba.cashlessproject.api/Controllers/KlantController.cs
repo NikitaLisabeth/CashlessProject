@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using nmct.ba.cashlessproject.api.Helper;
 using nmct.ba.cashlessproject.Models;
+using System.Security.Claims;
 
 namespace nmct.ba.cashlessproject.api.Controllers
 {
@@ -13,18 +14,21 @@ namespace nmct.ba.cashlessproject.api.Controllers
     {
         public List<Customers> Get()
         {
-            return DAKlant.GetKlanten();
+            ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;
+            return DAKlant.GetKlanten(p.Claims);
         }
 
         public HttpResponseMessage Put(Customers kl)
         {
-            DAKlant.UpdateAccount(kl);
+            ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;
+            DAKlant.UpdateAccount(kl,p.Claims);
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         public HttpResponseMessage Post(Customers kl)
         {
-            DAKlant.AddNewCustomer(kl);
+            ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;
+            DAKlant.AddNewCustomer(kl, p.Claims);
             return new HttpResponseMessage(HttpStatusCode.Created);
         } 
     }

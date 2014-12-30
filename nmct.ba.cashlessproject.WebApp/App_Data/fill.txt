@@ -9,6 +9,17 @@ ALTER ROLE [db_datareader] ADD MEMBER [LoginUser]
 GO
 ALTER ROLE [db_datawriter] ADD MEMBER [LoginUser]
 GO
+/****** Object:  Table [dbo].[Category]    Script Date: 30/12/2014 17:11:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Category](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[category] [nvarchar](50) NULL
+) ON [PRIMARY]
+
+GO
 /****** Object:  Table [dbo].[Customers]    Script Date: 26/12/2014 16:05:20 ******/
 SET ANSI_NULLS ON
 GO
