@@ -49,6 +49,7 @@ namespace nmct.ba.cashlessproject.api.Helper
             reader.Close();
             return pr;
         }
+        
         public static void DeleteProduct(int id, IEnumerable<Claim> claims)
         {
             string sql = "DELETE FROM [Products] WHERE ID =@ID";

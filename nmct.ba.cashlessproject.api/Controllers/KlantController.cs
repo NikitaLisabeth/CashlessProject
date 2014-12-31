@@ -17,6 +17,11 @@ namespace nmct.ba.cashlessproject.api.Controllers
             ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;
             return DAKlant.GetKlanten(p.Claims);
         }
+        public Customers Get(int id)
+        {
+           // ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;
+            return DAKlant.GetKlantenByID(id);
+        }
 
         public HttpResponseMessage Put(Customers kl)
         {

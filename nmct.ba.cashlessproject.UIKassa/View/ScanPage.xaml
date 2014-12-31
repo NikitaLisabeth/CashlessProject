@@ -54,11 +54,13 @@
             </Grid.RowDefinitions>
             <TextBlock Style="{StaticResource TextblockStyle}" Grid.Column="0" Grid.Row="0" Text="Naam:" VerticalAlignment="Center" />
             <TextBlock Style="{StaticResource TextblockStyle}" Grid.Column="0" Grid.Row="1" Text="Saldo:" VerticalAlignment="Center"  />
-            <TextBox Grid.Column="1" Grid.Row="0" Margin="10"/>
-            <TextBox Grid.Column="1" Grid.Row="1" Margin="10"/>
+            <TextBox Text="{Binding SelectedCustomer.CustomerName}" Grid.Column="1" Grid.Row="0" Margin="10"/>
+            <TextBox Text="{Binding SelectedCustomer.Balance}" Grid.Column="1" Grid.Row="1" Margin="10"/>
             <Button Command="{Binding BestellingCommand}" FontSize="20" Grid.Column="1" Grid.Row="2" Content="Bestelling plaatsen" Margin="10"  />
         </Grid>
         <TextBlock Style="{StaticResource TextblockStyle}" Grid.Row="1" Grid.Column="1" Text="Scan uw badge:" Grid.ColumnSpan="2" />
         <TextBlock Style="{StaticResource TextblockStyle}" Grid.Column="3" Grid.Row="1" Text="Klant gegevens:" Height="16" />
+        <TextBox Text="{Binding UserID}" Style="{StaticResource TextboxStyle}" Grid.Column="1" Grid.Row="2"/>
+        <Button Command="{Binding kiesCommand}" Grid.Row="4" Grid.Column="1" Content="Kies" FontSize="20" />
     </Grid>
 </UserControl>

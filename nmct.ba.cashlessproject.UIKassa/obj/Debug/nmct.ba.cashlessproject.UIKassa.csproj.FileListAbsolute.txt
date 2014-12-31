@@ -90,3 +90,5 @@ C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct
 C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIKassa\obj\Debug\WPF Template NMCT1.pdb
 C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIKassa\bin\Debug\nmct.ba.cashlessproject.model.dll
 C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIKassa\bin\Debug\nmct.ba.cashlessproject.model.pdb
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIKassa\bin\Debug\Thinktecture.IdentityModel.Client.dll
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIKassa\bin\Debug\Thinktecture.IdentityModel.Client.pdb

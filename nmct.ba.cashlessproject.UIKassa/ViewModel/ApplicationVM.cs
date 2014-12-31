@@ -5,11 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Thinktecture.IdentityModel.Client;
 
 namespace nmct.ba.cashlessproject.UIKassa.ViewModel
 {
     class ApplicationVM : ObservableObject
     {
+        //public static TokenResponse token = null;
+
         public ApplicationVM()
         {
             Pages.Add(new InloggenVM() );
@@ -24,7 +27,14 @@ namespace nmct.ba.cashlessproject.UIKassa.ViewModel
             get { return currentPage; }
             set { currentPage = value; OnPropertyChanged("CurrentPage"); }
         }
+        private int _activeUserId;
 
+        public int ActiveUserId
+        {
+            get { return _activeUserId; }
+            set { _activeUserId = value; OnPropertyChanged("ActiveUserId");}
+        }
+       
         private List<IPage> pages;
         public List<IPage> Pages
         {

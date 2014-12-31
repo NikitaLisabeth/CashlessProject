@@ -18,6 +18,7 @@ namespace nmct.ba.cashlessproject.api.Controllers
 
             return DAProduct.GetProducts(p.Claims);
         }
+     
         public HttpResponseMessage Put(Products product)
         {
             ClaimsPrincipal p = RequestContext.Principal as ClaimsPrincipal;

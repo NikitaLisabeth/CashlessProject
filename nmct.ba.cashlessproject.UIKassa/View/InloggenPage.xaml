@@ -29,9 +29,10 @@
                 <ColumnDefinition Width="141*"/>
             </Grid.ColumnDefinitions>
             <Rectangle Fill="#FFF4F4F5" Stroke="DarkGray" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2"/>
-            <TextBox Grid.Row="2" Text="TextBox" Grid.Column="1" Margin="15,30" />
-            <Button FontSize="16" Command="{Binding LoginCommand}" Content="Go" Grid.Row="2" Grid.Column="2" Margin="15,30"/>
-            <TextBlock FontSize="16" Style="{StaticResource TextblockStyle}" Text="Geef hier uw nummer in:" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" Margin="5.6,24.4,4.6,24.6" />
+            <TextBox Grid.Row="2" Text="Naam" Grid.Column="1" Margin="15,30" />
+            <Button FontSize="16" Command="{Binding LoginCommand}" Grid.ColumnSpan="2" Content="Go" Grid.Row="3" Grid.Column="1" Margin="15,30"/>
+            <TextBlock FontSize="16" Style="{StaticResource TextblockStyle}" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" Margin="5.6,24.4,4.6,24.6" ><Run Text="Geef hier uw"/><Run Text=" naam &amp;"/><Run Text=" nummer in:"/></TextBlock>
+            <TextBox Grid.Row="2"  Text="Nummer" Grid.Column="2" Margin="15,30,14.4,29.2" />
         </Grid>
 
     </Grid>

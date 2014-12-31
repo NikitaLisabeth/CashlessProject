@@ -34,7 +34,19 @@ namespace nmct.ba.cashlessproject.api.Helper
             }
             reader.Close();
             return list;
-
+        }
+        public static Customers GetKlantenByID(int id)
+        {
+            Customers c = new Customers();
+            string sql = "SELECT[Id],[CustomerName],[Address],[Balance],[Picture] FROM [Customers] where Id = @ID";
+            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
+            DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql, par1);
+            while (reader.Read())
+            {
+                c = Create(reader);
+            }
+            reader.Close();
+            return c;
         }
 
         private static Customers Create(IDataRecord record)

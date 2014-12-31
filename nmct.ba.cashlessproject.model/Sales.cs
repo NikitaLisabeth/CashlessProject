@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace nmct.ba.cashlessproject.Models
 {
-    class Sales
+    public class Sales
     {
         private int _id;
 
