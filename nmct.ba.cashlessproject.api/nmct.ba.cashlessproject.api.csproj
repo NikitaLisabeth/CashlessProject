@@ -166,9 +166,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\KlantUIController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Helper\DACategorie.cs" />
+    <Compile Include="Helper\DAKlantUI.cs" />
     <Compile Include="Helper\DASales.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

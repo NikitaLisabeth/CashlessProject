@@ -26,7 +26,7 @@ namespace nmct.ba.cashlessproject.api.Helper
         public static List<Customers> GetKlanten(IEnumerable<Claim> claims)
         {
             List<Customers> list = new List<Customers>();
-            string sql = "SELECT[Id],[CustomerName],[Address],[Balance],[Picture]FROM [Customers]";
+            string sql = "SELECT[Id],[CustomerName],[Address],[Balance],[Picture], , [Sex], [BirthDate] FROM [Customers]";
             DbDataReader reader = Database.GetData(Database.GetConnection(CreateConnectionString(claims)), sql);
             while (reader.Read())
             {
@@ -38,7 +38,7 @@ namespace nmct.ba.cashlessproject.api.Helper
         public static Customers GetKlantenByID(int id)
         {
             Customers c = new Customers();
-            string sql = "SELECT[Id],[CustomerName],[Address],[Balance],[Picture] FROM [Customers] where Id = @ID";
+            string sql = "SELECT[Id],[CustomerName],[Address],[Balance],[Picture], [Sex], [BirthDate] FROM [Customers] where Id = @ID";
             DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
             DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql, par1);
             while (reader.Read())
@@ -51,14 +51,29 @@ namespace nmct.ba.cashlessproject.api.Helper
 
         private static Customers Create(IDataRecord record)
         {
-            return new Customers()
-            {
-                Id = Int32.Parse(record["Id"].ToString()),
-                CustomerName = record["CustomerName"].ToString(),
-                Address = record["Address"].ToString(),
-                Balance = Convert.ToInt32(record["Balance"].ToString()),
-                Picture = Encoding.ASCII.GetBytes(record["Picture"].ToString()).ToArray()
-            };
+            Customers c = new Customers();
+            c.Id = Int32.Parse(record["Id"].ToString());
+            c.CustomerName = record["CustomerName"].ToString();
+            c.BirthDate = Convert.ToDateTime( record["BirthDate"]);
+            c.Balance = Convert.ToInt32(record["Balance"].ToString());
+            c.Sex = record["Sex"].ToString();
+            c.Address = record["Address"].ToString();
+            if (!DBNull.Value.Equals(record["Picture"]))
+                c.Picture = (byte[])record["Picture"];
+            else
+                c.Picture = new byte[0];
+            return c;
+            //return new Customers()
+            //{
+            //    Id = Int32.Parse(record["Id"].ToString()),
+            //    CustomerName = record["CustomerName"].ToString(),
+            //    Address = record["Address"].ToString(),
+            //    Balance = Convert.ToInt32(record["Balance"].ToString()),
+            //    //
+            //    Picture = Encoding.ASCII.GetBytes(record["Picture"].ToString()).ToArray(),
+            //    Sex = record["Sex"].ToString(),
+            //    BirthDate = Convert.ToDateTime( record["BirthDate"])
+            //};
         }
 
         public static int UpdateAccount(Customers kl, IEnumerable<Claim> claims)

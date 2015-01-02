@@ -84,12 +84,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converter\StringToImageConverter.cs" />
+    <Compile Include="View\Converter\StringToImageConverter.cs" />
     <Compile Include="ViewModel\ApplicationVM.cs" />
     <Compile Include="ViewModel\PageGegevensVM.cs" />
     <Compile Include="ViewModel\PageOneVM.cs" />
     <Compile Include="ViewModel\PageOpladenVM.cs" />
     <Compile Include="ViewModel\PageRegistrerenVM.cs" />
+    <Compile Include="ViewModel\PageScanKaartVM.cs" />
     <Compile Include="ViewModel\PageStartVM.cs" />
     <Compile Include="View\PageGegevens.xaml.cs">
       <DependentUpon>PageGegevens.xaml</DependentUpon>
@@ -102,6 +103,9 @@
     </Compile>
     <Compile Include="View\PageRegistreren.xaml.cs">
       <DependentUpon>PageRegistreren.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageScanKaart.xaml.cs">
+      <DependentUpon>PageScanKaart.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PageStart.xaml.cs">
       <DependentUpon>PageStart.xaml</DependentUpon>
@@ -133,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PageRegistreren.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageScanKaart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

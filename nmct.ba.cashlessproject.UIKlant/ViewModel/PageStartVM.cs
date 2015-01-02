@@ -33,7 +33,7 @@ namespace nmct.ba.cashlessproject.UIKlant.ViewModel
         private void Bekijken()
         {
             ApplicationVM appvm = App.Current.MainWindow.DataContext as ApplicationVM;
-            appvm.ChangePage(new PageGegevensVM());
+            appvm.ChangePage(new PageScanKaartVM());
         }
     }
 }

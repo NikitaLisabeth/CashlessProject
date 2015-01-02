@@ -90,3 +90,5 @@ C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct
 C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIKlant\bin\Debug\beid35libCS.xml
 C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIKlant\obj\Debug\View\PageStart.baml
 C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIKlant\obj\Debug\View\PageStart.g.cs
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIKlant\obj\Debug\View\PageScanKaart.g.cs
+C:\Users\Nikita\OneDrive\Project BA\nmct.ba.cashlessproject\CashlessProject\nmct.ba.cashlessproject.UIKlant\obj\Debug\View\PageScanKaart.baml

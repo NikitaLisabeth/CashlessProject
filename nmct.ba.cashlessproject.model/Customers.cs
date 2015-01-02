@@ -58,6 +58,13 @@ namespace nmct.ba.cashlessproject.Models
             get { return _birthDate; }
             set { _birthDate = value; }
         }
+        private string kaartNummer;
+
+        public string KaartNummer
+        {
+            get { return kaartNummer; }
+            set { kaartNummer = value; }
+        }
 
     }
 }

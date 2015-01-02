@@ -2,7 +2,6 @@
 using GalaSoft.MvvmLight.CommandWpf;
 using Newtonsoft.Json;
 using nmct.ba.cashlessproject.Models;
-using nmct.ba.cashlessproject.UIKlant.Converter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,16 +12,12 @@ using System.Windows.Input;
 
 namespace nmct.ba.cashlessproject.UIKlant.ViewModel
 {
-    class PageRegistrerenVM : ObservableObject, IPage
+    class PageScanKaartVM : ObservableObject, IPage
     {
-        public PageRegistrerenVM()
-        {
-        }
         public string Name
         {
-            get { return "Registreren"; }
+            get { return "ScanKaart"; }
         }
-
         private Customers _selectedCustomer;
 
         public Customers SelectedCustomer
@@ -30,43 +25,16 @@ namespace nmct.ba.cashlessproject.UIKlant.ViewModel
             get { return _selectedCustomer; }
             set { _selectedCustomer = value; OnPropertyChanged("SelectedCustomer"); }
         }
-        public ICommand OpslaanCommand
+        public ICommand ScanCommand
         {
-            get { return new RelayCommand(Opslaan); }
+            get { return new RelayCommand(Scan); }
         }
 
-        private async void Opslaan()
+        private void Scan()
         {
-            Customers newKlant = SelectedCustomer;
-            using (HttpClient client = new HttpClient())
-            {
-                //client.SetBearerToken(ApplicationVM.token.AccessToken);
-                string kl = JsonConvert.SerializeObject(newKlant);
-                HttpResponseMessage response = await client.PostAsync("http://localhost:1817/api/klantui", new StringContent(kl, Encoding.UTF8, "application/json"));
-                if (response.IsSuccessStatusCode)
-                {
-                    ApplicationVM appvm = App.Current.MainWindow.DataContext as ApplicationVM;
-                    appvm.ChangePage(new PageOpladenVM());
-                    appvm.ActiveUserId = SelectedCustomer.Id;
-                }
-            }
-
+            Reader();
         }
-        public ICommand AnnulerenCommand
-        {
-            get { return new RelayCommand(Annuleren); }
-        }
-
-        private void Annuleren()
-        {
-            ApplicationVM appvm = App.Current.MainWindow.DataContext as ApplicationVM;
-            appvm.ChangePage(new PageStartVM());
-        }
-        public ICommand LeesKaartCommand
-        {
-            get { return new RelayCommand(Reader); }
-        }
-        public void Reader()
+        public async void Reader()
         {
             BEID_ReaderSet.initSDK();
             // access the eID card here
@@ -91,12 +59,42 @@ namespace nmct.ba.cashlessproject.UIKlant.ViewModel
                         c.BirthDate = Convert.ToDateTime(card.getID().getDateOfBirth());
                         c.Sex = card.getID().getGender();
                         SelectedCustomer = c;
-                        OnPropertyChanged("SelectedCustomer");
+                        //OnPropertyChanged("SelectedCustomer");
+                        ApplicationVM appvm = App.Current.MainWindow.DataContext as ApplicationVM;
+                        bool exists = await CheckIfCustomerExists(c.KaartNummer);
+
+                        if (exists == false)
+                        {
+                            PageRegistrerenVM klantRegis = new PageRegistrerenVM();
+                            appvm.ChangePage(klantRegis);
+                        }
+                        else
+                        {
+                            PageGegevensVM klantGeg = new PageGegevensVM();
+                            appvm.ChangePage(klantGeg);
+                        }
                     }
                 }
             }
             BEID_ReaderSet.releaseSDK();
         }
-        
+        public async Task<bool> CheckIfCustomerExists(string KaartNummer)
+        {
+            var client = new System.Net.Http.HttpClient();
+            //string natnr = Convert.ToString(nationalNumber);
+            //client.SetBearerToken(token);
+            HttpResponseMessage response = await client.GetAsync("http://localhost:1817/api/klantui?KaartNummer=" + KaartNummer);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                //bool exists = JsonConvert.DeserializeObject<bool>(json);
+                Customers c = JsonConvert.DeserializeObject<Customers>(json);
+                ApplicationVM appvm = App.Current.MainWindow.DataContext as ApplicationVM;
+                appvm.ActiveUserId = c.Id;
+                bool exists = true;
+                return exists;
+            }
+            return false;
+        }
     }
 }
