@@ -39,6 +39,7 @@
             <Setter Property="FontFamily" Value="Tahoma" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="FontSize" Value="16"/>
+            
         </Style>
         <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
             <Setter Property="FontFamily" Value="Tahoma" />
@@ -47,12 +48,14 @@
             <Setter Property="Width" Value="400"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
         <Style x:Key="ListboxStyle" TargetType="{x:Type ListBox}" >
             <Setter Property="FontFamily" Value="Tahoma" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="Height" Value="500" />
+            
         </Style>
         <Style x:Key="DatePickerStyle" TargetType="DatePicker">
             <Setter Property="FontFamily" Value="Tahoma" />
@@ -72,6 +75,7 @@
         </Style>
         <Style x:Key="TextboxWideStyle" BasedOn="{StaticResource TextBoxStyle}" TargetType="TextBox">
             <Setter Property="Width" Value="550"/>
+            <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
         <Style x:Key="ButtonStyle" BasedOn="{StaticResource HeaderStyle}" TargetType="Button">
             <Setter Property="Background" Value="DarkGray"/>

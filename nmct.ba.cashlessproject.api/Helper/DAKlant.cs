@@ -26,7 +26,7 @@ namespace nmct.ba.cashlessproject.api.Helper
         public static List<Customers> GetKlanten(IEnumerable<Claim> claims)
         {
             List<Customers> list = new List<Customers>();
-            string sql = "SELECT[Id],[CustomerName],[Address],[Balance],[Picture], , [Sex], [BirthDate] FROM [Customers]";
+            string sql = "SELECT[Id],[CustomerName],[Address],[Balance],[Picture], [Sex], [BirthDate] FROM [Customers]";
             DbDataReader reader = Database.GetData(Database.GetConnection(CreateConnectionString(claims)), sql);
             while (reader.Read())
             {
@@ -38,7 +38,7 @@ namespace nmct.ba.cashlessproject.api.Helper
         public static Customers GetKlantenByID(int id)
         {
             Customers c = new Customers();
-            string sql = "SELECT[Id],[CustomerName],[Address],[Balance],[Picture], [Sex], [BirthDate] FROM [Customers] where Id = @ID";
+            string sql = "SELECT [Id],[CustomerName],[Address],[Balance],[Picture], [Sex], [BirthDate] FROM [Klant].[dbo].[Customers] where Id = @ID";
             DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
             DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql, par1);
             while (reader.Read())
@@ -54,9 +54,18 @@ namespace nmct.ba.cashlessproject.api.Helper
             Customers c = new Customers();
             c.Id = Int32.Parse(record["Id"].ToString());
             c.CustomerName = record["CustomerName"].ToString();
-            c.BirthDate = Convert.ToDateTime( record["BirthDate"]);
+            if (!DBNull.Value.Equals(record["BirthDate"]))
+                c.BirthDate = Convert.ToDateTime(record["BirthDate"]);
+            else
+                c.BirthDate = DateTime.Today;
+                    
             c.Balance = Convert.ToInt32(record["Balance"].ToString());
-            c.Sex = record["Sex"].ToString();
+
+            if (!DBNull.Value.Equals(record["Sex"]))
+                c.Sex = record["Sex"].ToString();
+            else
+                c.Sex = "Niet bekend";
+            
             c.Address = record["Address"].ToString();
             if (!DBNull.Value.Equals(record["Picture"]))
                 c.Picture = (byte[])record["Picture"];
@@ -88,11 +97,12 @@ namespace nmct.ba.cashlessproject.api.Helper
             
 
             string sql = "UPDATE Customers SET CustomerName = @Name, Balance = @Balance, Address = @Address, Picture = @Picture WHERE ID=@ID";
-            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@Name", name);
-            DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@Balance", balance);
-            DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@Picture", picture);
-            DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@Address", address);
-            DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
+            DbParameter par1 = Database.AddParameter(CreateConnectionString(claims), "@Name", name);
+           // DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@Name", name);
+            DbParameter par2 = Database.AddParameter(CreateConnectionString(claims), "@Balance", balance);
+            DbParameter par3 = Database.AddParameter(CreateConnectionString(claims), "@Picture", picture);
+            DbParameter par4 = Database.AddParameter(CreateConnectionString(claims), "@Address", address);
+            DbParameter par5 = Database.AddParameter(CreateConnectionString(claims), "@ID", id);
 
             rowsaffected += Database.ModifyData(Database.GetConnection(CreateConnectionString(claims)), sql, par1, par2, par3, par4, par5);
 
@@ -110,10 +120,10 @@ namespace nmct.ba.cashlessproject.api.Helper
             string sql = "INSERT INTO Customers VALUES(@CustomerName, @Picture, @Balance, @Address)";
 
             //DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
-            DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@CustomerName", name);
-            DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@Picture", picture);
-            DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@Balance", balance);
-            DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@Address", address);
+            DbParameter par2 = Database.AddParameter(CreateConnectionString(claims), "@CustomerName", name);
+            DbParameter par3 = Database.AddParameter(CreateConnectionString(claims), "@Picture", picture);
+            DbParameter par4 = Database.AddParameter(CreateConnectionString(claims), "@Balance", balance);
+            DbParameter par5 = Database.AddParameter(CreateConnectionString(claims), "@Address", address);
 
             Database.InsertData(Database.GetConnection(CreateConnectionString(claims)), sql, par2, par3, par4, par5);
         }

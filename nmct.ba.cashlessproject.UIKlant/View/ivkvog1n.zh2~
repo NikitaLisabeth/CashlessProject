@@ -7,9 +7,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="525">
-   <!--<UserControl.DataContext>
+    <UserControl.DataContext>
         <vm:PageGegevensVM/>
-    </UserControl.DataContext>-->
+    </UserControl.DataContext>
     <UserControl.Resources>
         <c:StringToImageConverter x:Key="StringToImageConverter"/>
     </UserControl.Resources>
@@ -34,12 +34,12 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Style="{StaticResource TextBlockStyle2}" Text="Uw gegevens:" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" />
-        <TextBlock Style="{StaticResource TextBlockStyle}" Text="Naam:" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
-        <TextBlock Style="{StaticResource TextBlockStyle}" Text="Adres:" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
-        <TextBlock Style="{StaticResource TextBlockStyle}" Text="Geboortedatum:" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
-        <TextBlock Style="{StaticResource TextBlockStyle}" Text="Geslacht:" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
-        <TextBlock Style="{StaticResource TextBlockStyle}" Text="Huidig saldo:" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"/>
+        <TextBlock Text="Uw gegevens:" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" />
+        <TextBlock Text="Naam:" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
+        <TextBlock Text="Adres:" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
+        <TextBlock Text="Geboortedatum:" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
+        <TextBlock Text="Geslacht:" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
+        <TextBlock Text="Huidig saldo:" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"/>
 
         <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedCustomer.CustomerName}" Name="txbNaam" Grid.Column="2" Grid.Row="2" />
         <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedCustomer.Address}" Name="txbAdres" Grid.Column="2" Grid.Row="3" Margin="0,1"  />
@@ -47,7 +47,7 @@
         <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedCustomer.Sex}" Name="txbGeslacht" Grid.Column="2" Grid.Row="5" Margin="0,1" />
         <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedCustomer.Balance}" Name="txbSaldo" Grid.Column="2" Grid.Row="6" Margin="0,1" />
 
-        <Image Source="{Binding SelectedCustomer.Picture}" Grid.Column="4" Grid.Row="2" Grid.RowSpan="5" Margin="25" />
+        <Image Source="{Binding SelectedCustomer.Picture}" Grid.Column="4" Grid.Row="2" Grid.RowSpan="5" Margin="10,0" />
 
         <!--<Button Content="Gegevens bewerken" Grid.Row="9" Grid.Column="1" Margin="5,1"/>-->
         <Button Style="{StaticResource ButtonStyle}" Command="{Binding OpladenCommand}" Content="Kaart opladen" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="5,1"/>

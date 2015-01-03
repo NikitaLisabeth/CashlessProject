@@ -13,10 +13,6 @@ namespace nmct.ba.cashlessproject.UIKlant.ViewModel
 {
     class PageGegevensVM : ObservableObject, IPage
     {
-        public string Name
-        {
-            get { return "Gegevens"; }
-        }
         public PageGegevensVM()
         {
             ApplicationVM appvm = App.Current.MainWindow.DataContext as ApplicationVM;
@@ -24,6 +20,10 @@ namespace nmct.ba.cashlessproject.UIKlant.ViewModel
             {
                 GetKlant(appvm.ActiveUserId);
             }
+        } 
+        public string Name
+        {
+            get { return "Gegevens"; }
         }
         private Customers _selectedCustomer;
 

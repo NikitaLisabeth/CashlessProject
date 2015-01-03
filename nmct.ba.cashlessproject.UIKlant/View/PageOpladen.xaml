@@ -6,9 +6,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="525">
-    <UserControl.DataContext>
+    <!--<UserControl.DataContext>
         <vm:PageOpladenVM/>
-    </UserControl.DataContext>
+    </UserControl.DataContext>-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
@@ -22,7 +22,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Mijn kaart opladen:" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" />
+        <TextBlock Style="{StaticResource TextBlockStyle2}" Text="Mijn kaart opladen:" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" />
         <Grid Name="Cijfers" Grid.Column="1" Grid.Row="2" Margin="0,5,50,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -36,18 +36,18 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding EenCommand}" Name="btnEen" Content="1" Grid.Row="0" Grid.Column="0" />
-            <Button Command="{Binding TweeCommand}" Name="btnTwee" Content="2" Grid.Row="0" Grid.Column="1" />
-            <Button Command="{Binding DrieCommand}" Name="btnDrie" Content="3" Grid.Row="0" Grid.Column="2" />
-            <Button Command="{Binding VierCommand}" Name="btnVier" Content="4" Grid.Row="1" Grid.Column="0" />
-            <Button Command="{Binding VijfCommand}" Name="btnVijf" Content="5" Grid.Row="1" Grid.Column="1" />
-            <Button Command="{Binding ZesCommand}" Name="btnZes" Content="6" Grid.Row="1" Grid.Column="2" />
-            <Button Command="{Binding ZevenCommand}" Name="btnZeven" Content="7" Grid.Row="2" Grid.Column="0" />
-            <Button Command="{Binding AchtCommand}" Name="btnAcht" Content="8" Grid.Row="2" Grid.Column="1" />
-            <Button Command="{Binding NegenCommand}" Name="btnNegen" Content="9" Grid.Row="2" Grid.Column="2" />
-            <Button Command="{Binding NulCommand}" Name="btnNul" Content="0" Grid.Row="3" Grid.Column="1" />
+            <Button Style="{StaticResource ButtonStyle3}" Command="{Binding EenCommand}" Name="btnEen" Content="1" Grid.Row="0" Grid.Column="0" />
+            <Button Style="{StaticResource ButtonStyle3}" Command="{Binding TweeCommand}" Name="btnTwee" Content="2" Grid.Row="0" Grid.Column="1" />
+            <Button Style="{StaticResource ButtonStyle3}" Command="{Binding DrieCommand}" Name="btnDrie" Content="3" Grid.Row="0" Grid.Column="2" />
+            <Button Style="{StaticResource ButtonStyle3}" Command="{Binding VierCommand}" Name="btnVier" Content="4" Grid.Row="1" Grid.Column="0" />
+            <Button Style="{StaticResource ButtonStyle3}" Command="{Binding VijfCommand}" Name="btnVijf" Content="5" Grid.Row="1" Grid.Column="1" />
+            <Button Style="{StaticResource ButtonStyle3}" Command="{Binding ZesCommand}" Name="btnZes" Content="6" Grid.Row="1" Grid.Column="2" />
+            <Button Style="{StaticResource ButtonStyle3}" Command="{Binding ZevenCommand}" Name="btnZeven" Content="7" Grid.Row="2" Grid.Column="0" />
+            <Button Style="{StaticResource ButtonStyle3}" Command="{Binding AchtCommand}" Name="btnAcht" Content="8" Grid.Row="2" Grid.Column="1" />
+            <Button Style="{StaticResource ButtonStyle3}" Command="{Binding NegenCommand}" Name="btnNegen" Content="9" Grid.Row="2" Grid.Column="2" />
+            <Button Style="{StaticResource ButtonStyle3}" Command="{Binding NulCommand}" Name="btnNul" Content="0" Grid.Row="3" Grid.Column="1" />
             
-            <Button Command="{Binding ResetCommand}" Content="Reset" Grid.Row="4" Grid.ColumnSpan="3" Margin="10"/>
+            <Button Style="{StaticResource ButtonStyle}" Command="{Binding ResetCommand}" Content="Reset" Grid.Row="4" Grid.ColumnSpan="3" Margin="10"/>
 
         </Grid>
         <Grid Name="GegevensOpladen" Grid.Column="2" Grid.Row="2">
@@ -66,18 +66,18 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Naam:" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" />
-            <TextBlock Text="Huidig saldo:" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" />
-            <TextBlock Text="Opladen:" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" />
-            <TextBlock Text="Nieuw saldo:" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" />
+            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Naam:" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" />
+            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Huidig saldo:" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" />
+            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Opladen:" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" />
+            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Nieuw saldo:" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" />
             
-            <TextBox Text="{Binding SelectedCustomer.CustomerName}" Name="txbNaam" Grid.Column="1" Grid.Row="0" Margin="0,1" />
-            <TextBox Text="{Binding SelectedCustomer.Balance}" Name="txbHuidigSaldo" Grid.Column="1" Grid.Row="1" Margin="0,1" />
-            <TextBox Text="{Binding Opladen}" Name="txbOpladen" Grid.Column="1" Grid.Row="2" Margin="0,1" />
-            <TextBox Text="{Binding TotaalBedrag}" Name="txbNieuwSaldo" Grid.Column="1" Grid.Row="3" Margin="0,1" />
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedCustomer.CustomerName}" Name="txbNaam" Grid.Column="1" Grid.Row="0" Margin="0,1" />
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedCustomer.Balance}" Name="txbHuidigSaldo" Grid.Column="1" Grid.Row="1" Margin="0,1" />
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Opladen}" Name="txbOpladen" Grid.Column="1" Grid.Row="2" Margin="0,1" />
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding TotaalBedrag}" Name="txbNieuwSaldo" Grid.Column="1" Grid.Row="3" Margin="0,1" />
 
-            <Button Command="{Binding BevestigCommand}" Content="Bevestigen" Grid.Column="0" Grid.Row="5" Margin="0,0,2,0" />
-            <Button Command="{Binding AnnulerenCommand}" Content="Annuleren" Grid.Column="1" Grid.Row="5" Margin="2,0,0,0" />
+            <Button Style="{StaticResource ButtonStyle2}" Command="{Binding BevestigCommand}" Content="Bevestigen" Grid.Column="0" Grid.Row="5" Margin="0,0,2,0" />
+            <Button Style="{StaticResource ButtonStyle2}" Command="{Binding AnnulerenCommand}" Content="Annuleren" Grid.Column="1" Grid.Row="5" Margin="2,0,0,0" />
             <TextBlock Grid.Row="7" Grid.ColumnSpan="2" Grid.Column="0" Text="{Binding Error}" FontSize="14" Foreground="red"/>
         </Grid>
     </Grid>

@@ -40,7 +40,7 @@ namespace nmct.ba.cashlessproject.api.Helper
         {
             Employee emp = new Employee();
             string sql = "SELECT [Id],[EmployeeName],[Address],[Email],[Phone],[LoginCode] FROM [Employee] where Id=@id";
-            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@id", id);
+            DbParameter par1 = Database.AddParameter(CreateConnectionString(claims), "@id", id);
             DbDataReader reader = Database.GetData(Database.GetConnection(CreateConnectionString(claims)), sql, par1);
             while (reader.Read())
             {
@@ -75,12 +75,12 @@ namespace nmct.ba.cashlessproject.api.Helper
             int logincode = emp.LoginCode;
 
             string sql = "UPDATE [Employee] SET LoginCode = @LoginCode, EmployeeName = @Name, Email = @Email, Address = @Address, Phone = @Phone WHERE ID=@ID";
-            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@Name", name);
-            DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@Email", email);
-            DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@Phone", phone);
-            DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@Address", address);
-            DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
-            DbParameter par6 = Database.AddParameter(CONNECTIONSTRING, "@LoginCode", logincode);
+            DbParameter par1 = Database.AddParameter(CreateConnectionString(claims), "@Name", name);
+            DbParameter par2 = Database.AddParameter(CreateConnectionString(claims), "@Email", email);
+            DbParameter par3 = Database.AddParameter(CreateConnectionString(claims), "@Phone", phone);
+            DbParameter par4 = Database.AddParameter(CreateConnectionString(claims), "@Address", address);
+            DbParameter par5 = Database.AddParameter(CreateConnectionString(claims), "@ID", id);
+            DbParameter par6 = Database.AddParameter(CreateConnectionString(claims), "@LoginCode", logincode);
 
             rowsaffected += Database.ModifyData(Database.GetConnection(CreateConnectionString(claims)), sql, par1, par2, par3, par4, par5, par6);
 
@@ -98,11 +98,11 @@ namespace nmct.ba.cashlessproject.api.Helper
 
             string sql = "INSERT INTO [Employee] ([EmployeeName],[Address],[Email],[Phone],[LoginCode] ) VALUES(@EmployeeName, @Address, @Email, @Phone, @LoginCode)";
 
-            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@EmployeeName", name);
-            DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@Email", email);
-            DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@Phone", phone);
-            DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@Address", address);
-            DbParameter par6 = Database.AddParameter(CONNECTIONSTRING, "@LoginCode", logincode);
+            DbParameter par1 = Database.AddParameter(CreateConnectionString(claims), "@EmployeeName", name);
+            DbParameter par2 = Database.AddParameter(CreateConnectionString(claims), "@Email", email);
+            DbParameter par3 = Database.AddParameter(CreateConnectionString(claims), "@Phone", phone);
+            DbParameter par4 = Database.AddParameter(CreateConnectionString(claims), "@Address", address);
+            DbParameter par6 = Database.AddParameter(CreateConnectionString(claims), "@LoginCode", logincode);
 
            // DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
             Database.InsertData(Database.GetConnection(CreateConnectionString(claims)), sql, par1, par2, par3, par4, par6);
@@ -111,7 +111,7 @@ namespace nmct.ba.cashlessproject.api.Helper
         public static void DeleteEmployee(int idMedewerker, IEnumerable<Claim> claims)
         {
             string sql2 = "DELETE FROM [Employee] WHERE ID =@ID";
-            DbParameter par21 = Database.AddParameter(CONNECTIONSTRING, "@ID", idMedewerker);
+            DbParameter par21 = Database.AddParameter(CreateConnectionString(claims), "@ID", idMedewerker);
             Database.InsertData(Database.GetConnection(CreateConnectionString(claims)), sql2, par21);
         }
 

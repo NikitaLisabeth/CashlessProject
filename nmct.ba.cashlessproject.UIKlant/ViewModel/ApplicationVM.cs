@@ -12,12 +12,8 @@ namespace nmct.ba.cashlessproject.UIKlant.ViewModel
     {
         public ApplicationVM()
         {
-            //Pages.Add(new PageGegevensVM()); 
-            //Pages.Add(new PageOpladenVM());
-            //Pages.Add(new PageRegistrerenVM());
             Pages.Add(new PageStartVM());
             // Add other pages
-
             CurrentPage = Pages[0];
         }
 

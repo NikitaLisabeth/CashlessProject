@@ -45,13 +45,32 @@ namespace nmct.ba.cashlessproject.UIKlant.ViewModel
                 HttpResponseMessage response = await client.PostAsync("http://localhost:1817/api/klantui", new StringContent(kl, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {
-                    ApplicationVM appvm = App.Current.MainWindow.DataContext as ApplicationVM;
-                    appvm.ChangePage(new PageOpladenVM());
-                    appvm.ActiveUserId = SelectedCustomer.Id;
+                    getKlantId(SelectedCustomer.KaartNummer);
+                    //ApplicationVM appvm = App.Current.MainWindow.DataContext as ApplicationVM;                    
+                    //appvm.ActiveUserId = SelectedCustomer.Id;
+                    //appvm.ChangePage(new PageOpladenVM());
                 }
             }
 
         }
+
+        public async void getKlantId(string KaartNummer)
+        {
+            var client = new System.Net.Http.HttpClient();
+            //string natnr = Convert.ToString(nationalNumber);
+            //client.SetBearerToken(token);
+            HttpResponseMessage response = await client.GetAsync("http://localhost:1817/api/klantui?KaartNummer=" + KaartNummer);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                //bool exists = JsonConvert.DeserializeObject<bool>(json);
+                Customers c = JsonConvert.DeserializeObject<Customers>(json);
+                ApplicationVM appvm = App.Current.MainWindow.DataContext as ApplicationVM;
+                appvm.ActiveUserId = c.Id;
+                appvm.ChangePage(new PageOpladenVM());
+            }
+        }
+
         public ICommand AnnulerenCommand
         {
             get { return new RelayCommand(Annuleren); }

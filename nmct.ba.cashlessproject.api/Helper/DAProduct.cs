@@ -39,7 +39,7 @@ namespace nmct.ba.cashlessproject.api.Helper
         {
             Products pr = new Products();
             string sql = "SELECT [Id],[ProductName],[Price],[Category],[Stock] FROM [Products] where Id=@id";
-            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@id", id);
+            DbParameter par1 = Database.AddParameter(CreateConnectionString(claims), "@id", id);
 
             DbDataReader reader = Database.GetData(Database.GetConnection(CreateConnectionString(claims)), sql, par1);
             while (reader.Read())
@@ -53,11 +53,11 @@ namespace nmct.ba.cashlessproject.api.Helper
         public static void DeleteProduct(int id, IEnumerable<Claim> claims)
         {
             string sql = "DELETE FROM [Products] WHERE ID =@ID";
-            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
+            DbParameter par1 = Database.AddParameter(CreateConnectionString(claims), "@ID", id);
             Database.InsertData(Database.GetConnection(CreateConnectionString(claims)), sql, par1);
 
             string sql2 = "DELETE FROM [Product_Category] WHERE [ProductId] =@ID";
-            DbParameter par21 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
+            DbParameter par21 = Database.AddParameter(CreateConnectionString(claims), "@ID", id);
             Database.InsertData(Database.GetConnection(CreateConnectionString(claims)), sql2, par21);
 
         }
@@ -85,25 +85,25 @@ namespace nmct.ba.cashlessproject.api.Helper
 
 
             string sql = "UPDATE [Products] SET Price = @Price, ProductName = @ProductName, Stock = @Stock WHERE Id=@Id";
-            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@Price", price);
-            DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@ProductName", naam);
-            DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@Id", id);
-            DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@Category", category);
-            DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@Stock", stock);
+            DbParameter par1 = Database.AddParameter(CreateConnectionString(claims), "@Price", price);
+            DbParameter par2 = Database.AddParameter(CreateConnectionString(claims), "@ProductName", naam);
+            DbParameter par3 = Database.AddParameter(CreateConnectionString(claims), "@Id", id);
+            DbParameter par4 = Database.AddParameter(CreateConnectionString(claims), "@Category", category);
+            DbParameter par5 = Database.AddParameter(CreateConnectionString(claims), "@Stock", stock);
 
             rowsaffected += Database.ModifyData(Database.GetConnection(CreateConnectionString(claims)), sql, par1, par2, par3, par5);
 
 
             string sql2 = "UPDATE [Product_Category] SET CategoryId = @CategoryId WHERE ProductId=@Id";
-            DbParameter par21 = Database.AddParameter(CONNECTIONSTRING, "@Id", id);
+            DbParameter par21 = Database.AddParameter(CreateConnectionString(claims), "@Id", id);
             DbParameter par22;
             if (category == "Drank")
             {
-                par22 = Database.AddParameter(CONNECTIONSTRING, "@CategoryId", 1);
+                par22 = Database.AddParameter(CreateConnectionString(claims), "@CategoryId", 1);
             }
             else
             {
-                par22 = Database.AddParameter(CONNECTIONSTRING, "@CategoryId", 2);
+                par22 = Database.AddParameter(CreateConnectionString(claims), "@CategoryId", 2);
             }
             rowsaffected += Database.ModifyData(Database.GetConnection(CreateConnectionString(claims)), sql2, par21, par22);
             return rowsaffected;
@@ -118,20 +118,20 @@ namespace nmct.ba.cashlessproject.api.Helper
 
             string sql = "INSERT INTO [Products] VALUES(@ProductName, @Price, @Stock)";
 
-            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@Price", price);
-            DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@ProductName", naam);
-            DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@Stock", stock);
+            DbParameter par1 = Database.AddParameter(CreateConnectionString(claims), "@Price", price);
+            DbParameter par2 = Database.AddParameter(CreateConnectionString(claims), "@ProductName", naam);
+            DbParameter par5 = Database.AddParameter(CreateConnectionString(claims), "@Stock", stock);
             Database.InsertData(Database.GetConnection(CreateConnectionString(claims)), sql, par1, par2, par5);
             //Categorieen table wordt standaard ingevuld door het IT bedrijf
             string sql2 = "insert into Product_Category values(@Category);";
-            DbParameter par21 = Database.AddParameter(CONNECTIONSTRING, "@Id", id);
+            DbParameter par21 = Database.AddParameter(CreateConnectionString(claims), "@Id", id);
             DbParameter par23;
             if(category == "Drank"){
-                par23 = Database.AddParameter(CONNECTIONSTRING, "@Category", 1);
+                par23 = Database.AddParameter(CreateConnectionString(claims), "@Category", 1);
             }
             else
             {
-                 par23 = Database.AddParameter(CONNECTIONSTRING, "@Category", 2);
+                par23 = Database.AddParameter(CreateConnectionString(claims), "@Category", 2);
             }
 
             Database.InsertData(Database.GetConnection(CreateConnectionString(claims)), sql2, par23);            

@@ -43,12 +43,18 @@
             <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="1" Text="Id:" VerticalAlignment="Center" Height="19" />
             <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="2" Text="Adres:" VerticalAlignment="Center" Height="19" />
             <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="3" Text="Balans:" VerticalAlignment="Center" Height="20"  />
+            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="4" Text="Geslacht:" VerticalAlignment="Center" Height="20"  />
+            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="5" Text="Geboortedatum:" VerticalAlignment="Center" Height="20"  />
+
             <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedKlant.CustomerName}" Grid.Column="1" Grid.Row="0" />
             <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedKlant.Id}" Grid.Column="1" Grid.Row="1"  />
             <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedKlant.Address}" Grid.Column="1" Grid.Row="2"/>
             <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedKlant.Balance}" Grid.Column="1" Grid.Row="3" />
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedKlant.Sex}" Grid.Column="1" Grid.Row="4" />
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedKlant.BirthDate}" Grid.Column="1" Grid.Row="5" />
 
-            <Image Grid.Column="2" Grid.RowSpan="5" Margin="5,1,114,1" />
+
+            <Image Source="{Binding SelectedKlant.Picture}" Grid.Column="2" Grid.RowSpan="4" Margin="25" />
 
 
         </Grid>
@@ -58,9 +64,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Style="{StaticResource ButtonStyle}" Command="{Binding SetStatusToUpdateCommand}" Grid.Column="0" Content="Bewerk" />
-            <Button Style="{StaticResource ButtonStyle}" Grid.Column="1" Content="Verwijderen" />
-            <Button Style="{StaticResource ButtonStyle}" Command="{Binding ClickSaveCommand}" Grid.Column="3" Content="Opslaan" />
+            <Button Style="{StaticResource ButtonStyle}" Command="{Binding SetStatusToUpdateCommand}" Grid.Column="1" Content="Bewerk" />
+            <Button Style="{StaticResource ButtonStyle}" Command="{Binding ClickSaveCommand}" Grid.Column="2" Content="Opslaan" />
 
 
         </Grid>

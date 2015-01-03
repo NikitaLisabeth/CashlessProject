@@ -20,7 +20,6 @@ namespace nmct.ba.cashlessproject.UIManagement.ViewModel
             {
                 GetKlanten();
             }
-
         }
         public string Name
         {

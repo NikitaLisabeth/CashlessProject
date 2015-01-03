@@ -19,8 +19,8 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Button Command="{Binding RegistrerenCommand}" Content="Registeren" Margin="25" Grid.Row="1" Grid.Column="0" />
-        <Button Command="{Binding BekijkenCommand}" Content="Gegevens bekijken" Margin="25" Grid.Row="1" Grid.Column="1" />
+        <Button Style="{StaticResource ButtonStyle}" Command="{Binding RegistrerenCommand}" Content="Registeren" Margin="25" Grid.Row="1" Grid.Column="0" />
+        <Button Style="{StaticResource ButtonStyle}" Command="{Binding BekijkenCommand}" Content="Gegevens bekijken" Margin="25" Grid.Row="1" Grid.Column="1" />
 
     </Grid>
 </UserControl>

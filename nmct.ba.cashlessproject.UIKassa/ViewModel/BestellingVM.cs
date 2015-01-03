@@ -171,12 +171,16 @@ namespace nmct.ba.cashlessproject.UIKassa.ViewModel
         ObservableCollection<Products> list = new ObservableCollection<Products>();
         private void VoegToe()
         {
+            if (SelectedProduct != null)
+            {
                 Products p = new Products();
                 p = SelectedProduct;
                 double prijs = p.Price;
                 BepaalTeBepalen(prijs);
                 list.Add(p);
-                GekozenProducten = list;            
+                GekozenProducten = list;   
+            }
+                         
         }
         private void BepaalTeBepalen(double prijs)
         {

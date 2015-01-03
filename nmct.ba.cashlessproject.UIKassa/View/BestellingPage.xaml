@@ -36,7 +36,7 @@
                 </TextBlock.InputBindings>
             </TextBlock>
         </Grid>
-        <Grid Name="Gegevens" Grid.Column="2" Grid.Row="1" Grid.RowSpan="4" Margin="10.8,79.8,0,50.8" Grid.ColumnSpan="2">
+        <Grid Name="Gegevens" Grid.Column="2" Grid.Row="1" Grid.RowSpan="5" Margin="10.8,79.8,0,50.8" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -54,14 +54,14 @@
             </Grid.RowDefinitions>
             <TextBlock Style="{StaticResource TextblockStyle}" Grid.Column="0" Grid.Row="0" Text="Naam:"  Margin="0,0,0,0" />
             <TextBlock Style="{StaticResource TextblockStyle}" Grid.Column="0" Grid.Row="1" Text="Saldo:"  Margin="0,0,0,0"  />
-            <TextBox Text="{Binding SelectedCustomer.CustomerName}" Grid.Column="1" Grid.Row="0" Margin="0,1,5,1"/>
-            <TextBox Text="{Binding SelectedCustomer.Balance}" Grid.Column="1" Grid.Row="1" Margin="0,1,5,1"/>
+            <TextBox Style="{StaticResource TextboxStyle}" Text="{Binding SelectedCustomer.CustomerName}" Grid.Column="1" Grid.Row="0"/>
+            <TextBox Style="{StaticResource TextboxStyle}" Text="{Binding SelectedCustomer.Balance}" Grid.Column="1" Grid.Row="1" Margin="0,1,5,1"/>
             <TextBlock Style="{StaticResource TextblockStyle}" Text="Product(en):" Grid.Column="0" Grid.Row="2" />
-            <ListBox ItemsSource="{Binding GekozenProducten}" DisplayMemberPath="ProductName" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="0,0,5,2" />
+            <ListBox Style="{StaticResource ListboxStyle}" ItemsSource="{Binding GekozenProducten}" DisplayMemberPath="ProductName" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="0,10,5,10" />
             <TextBlock Style="{StaticResource TextblockStyle}"  Grid.Column="0" Grid.Row="6" Text="Totaal bedrag:" />
-            <TextBox Text="{Binding TeBetalen}" Name="TxbTotaalBedrag" Grid.Column="1" Grid.Row="6" Margin="0,0,5,0"/>
-            <Button Command="{Binding TerugCommand}" FontSize="20" Grid.Column="0" Grid.Row="8" Content="Terug" Margin="0,0,5,0"/>
-            <Button Command="{Binding Afrekenen}" FontSize="20" Grid.Column="1" Grid.Row="8" Content="Afrekenen" Margin="0,0,5,0" />
+            <TextBox Style="{StaticResource TextboxStyle}" Text="{Binding TeBetalen}" Name="TxbTotaalBedrag" Grid.Column="1" Grid.Row="6" Margin="0,0,5,0"/>
+            <Button Style="{StaticResource ButtonStyle2}" Command="{Binding TerugCommand}" FontSize="20" Grid.Column="0" Grid.Row="8" Content="Terug" Margin="0,0,5,0"/>
+            <Button Style="{StaticResource ButtonStyle2}" Command="{Binding Afrekenen}" FontSize="20" Grid.Column="1" Grid.Row="8" Content="Afrekenen" Margin="0,0,5,0" />
 
         </Grid>
         <!--<Grid Name="Producten" Grid.Row="2" Grid.Column="1" Margin="5.4,5.8,3.2,5.4" >
@@ -109,12 +109,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ListBox SelectedItem="{Binding SelectedProduct}" ItemsSource="{Binding Products}" DisplayMemberPath="ProductName" Grid.ColumnSpan="3"/>
-            <Button Command="{Binding VoegToeCommand}" Grid.Column="3" Content=">>" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="26" Height="70" Margin="10"/>
+            <ListBox Style="{StaticResource ListboxStyle}" SelectedItem="{Binding SelectedProduct}" ItemsSource="{Binding Products}" DisplayMemberPath="ProductName" Grid.ColumnSpan="3"/>
+            <Button Style="{StaticResource ButtonStyle}" Command="{Binding VoegToeCommand}" Grid.Column="3" Content=">>" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="26" Height="70" Margin="10"/>
         </Grid>
         <TextBlock Style="{StaticResource TextblockStyle}" Grid.Column="3" Grid.Row="1" Text="Klant gegevens:" Height="16" Margin="0.6,30.8,0,33.2" />
         <!--<ComboBox ItemsSource="{Binding Categorie}" Name="cboCategorie" Grid.Row="1" Grid.Column="1" Margin="15.4,14.8,15.2,15.2"/>-->
-        <Button Command="{Binding KiesDrankCommand}" Grid.Row="1" Grid.Column="1" Width="150" Content="Drank" FontSize="20" HorizontalAlignment="Left" />
-        <Button Command="{Binding KiesSnackCommand}" Grid.Row="1" Grid.Column="1" Width="150" Content="Snack" FontSize="20" HorizontalAlignment="Left" Margin="155,0,0,0" />
+        <Button Style="{StaticResource ButtonStyle}" Command="{Binding KiesDrankCommand}" Grid.Row="1" Grid.Column="1" Width="150" Content="Drank" FontSize="20" HorizontalAlignment="Left" Margin="10" />
+        <Button Style="{StaticResource ButtonStyle}" Command="{Binding KiesSnackCommand}" Grid.Row="1" Grid.Column="1" Width="150" Content="Snack" FontSize="20" HorizontalAlignment="Left" Margin="165,10,10,10" />
     </Grid>
 </UserControl>

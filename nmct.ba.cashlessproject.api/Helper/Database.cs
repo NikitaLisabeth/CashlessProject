@@ -213,6 +213,14 @@ namespace nmct.ba.cashlessproject.api.Helper
 
             return par;
         }
+        public static DbParameter AddParameter(ConnectionStringSettings settings, string name, object value)
+        {
+            DbParameter par = DbProviderFactories.GetFactory(settings.ProviderName).CreateParameter();
+            par.ParameterName = name;
+            par.Value = value;
+
+            return par;
+        }
 
         public static DbTransaction BeginTransaction(string ConnectionString)
         {
