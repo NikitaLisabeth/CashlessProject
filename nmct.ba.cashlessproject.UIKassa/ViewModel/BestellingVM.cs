@@ -267,7 +267,8 @@ namespace nmct.ba.cashlessproject.UIKassa.ViewModel
                 HttpResponseMessage response = await client.PutAsync("http://localhost:1817/api/sale", new StringContent(input, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {
-                    //GetKlanten();
+                    ApplicationVM appvm = App.Current.MainWindow.DataContext as ApplicationVM;
+                    appvm.ChangePage(new ScanVM());
                 }
             }
         }

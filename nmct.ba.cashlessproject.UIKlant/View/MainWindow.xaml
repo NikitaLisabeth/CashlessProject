@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:v="clr-namespace:nmct.ba.cashlessproject.UIKlant.View"
         xmlns:vm="clr-namespace:nmct.ba.cashlessproject.UIKlant.ViewModel"
-        Title="MainWindow" Height="750" Width="1200">
+        Title="Klant systeem Cashless" Height="750" Width="1200">
     <Window.DataContext>
         <vm:ApplicationVM/>
     </Window.DataContext>

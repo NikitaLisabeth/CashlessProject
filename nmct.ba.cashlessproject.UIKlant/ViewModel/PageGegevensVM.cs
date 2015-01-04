@@ -60,5 +60,15 @@ namespace nmct.ba.cashlessproject.UIKlant.ViewModel
             }
 
         }
+        public ICommand TerugCommand
+        {
+            get { return new RelayCommand(Terug); }
+        }
+
+        private void Terug()
+        {
+                ApplicationVM appvm = App.Current.MainWindow.DataContext as ApplicationVM;
+                appvm.ChangePage(new PageStartVM());
+        }
     }
 }

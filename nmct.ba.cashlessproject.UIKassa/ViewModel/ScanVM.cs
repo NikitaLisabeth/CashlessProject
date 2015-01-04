@@ -67,6 +67,7 @@ namespace nmct.ba.cashlessproject.UIKassa.ViewModel
 
          private void KiesKlant()
          {
+             //kan eventueel later vervangen worden door een reader.
              if (UserID > 0)
              {
                  GetKlant();
@@ -76,7 +77,6 @@ namespace nmct.ba.cashlessproject.UIKassa.ViewModel
          {
              using (HttpClient client = new HttpClient())
              {
-                 //client.SetBearerToken(ApplicationVM.token.AccessToken);
                  HttpResponseMessage response = await client.GetAsync("http://localhost:1817/api/klant/" + UserID);
                  if (response.IsSuccessStatusCode)
                  {

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:v="clr-namespace:nmct.ba.cashlessproject.UIManagement.View"
         xmlns:vm="clr-namespace:nmct.ba.cashlessproject.UIManagement.ViewModel"
-        Title="Management" Height="750" Width="1200">
+        Title="Management systeem Cashless" Height="750" Width="1200">
     <Window.DataContext>
         <vm:ApplicationVM/>
     </Window.DataContext>

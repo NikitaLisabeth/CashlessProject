@@ -9,7 +9,7 @@ ALTER ROLE [db_datareader] ADD MEMBER [LoginUser]
 GO
 ALTER ROLE [db_datawriter] ADD MEMBER [LoginUser]
 GO
-/****** Object:  Table [dbo].[Category]    Script Date: 30/12/2014 17:11:59 ******/
+/****** Object:  Table [dbo].[Category]    Script Date: 4/01/2015 17:05:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -20,7 +20,7 @@ CREATE TABLE [dbo].[Category](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Customers]    Script Date: 26/12/2014 16:05:20 ******/
+/****** Object:  Table [dbo].[Customers]    Script Date: 4/01/2015 17:05:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -33,6 +33,7 @@ CREATE TABLE [dbo].[Customers](
 	[Picture] [image] NULL,
 	[Sex] [nvarchar](15) NULL,
 	[BirthDate] [date] NULL,
+	[KaartNummer] [nvarchar](50) NULL,
  CONSTRAINT [PK_Customers] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -40,7 +41,7 @@ CREATE TABLE [dbo].[Customers](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Employee]    Script Date: 26/12/2014 16:05:20 ******/
+/****** Object:  Table [dbo].[Employee]    Script Date: 4/01/2015 17:05:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -59,7 +60,7 @@ CREATE TABLE [dbo].[Employee](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[ErrorLog]    Script Date: 26/12/2014 16:05:20 ******/
+/****** Object:  Table [dbo].[ErrorLog]    Script Date: 4/01/2015 17:05:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -76,7 +77,7 @@ CREATE TABLE [dbo].[ErrorLog](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Product_Category]    Script Date: 26/12/2014 16:05:20 ******/
+/****** Object:  Table [dbo].[Product_Category]    Script Date: 4/01/2015 17:05:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -87,7 +88,7 @@ CREATE TABLE [dbo].[Product_Category](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Products]    Script Date: 26/12/2014 16:05:20 ******/
+/****** Object:  Table [dbo].[Products]    Script Date: 4/01/2015 17:05:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -104,7 +105,7 @@ CREATE TABLE [dbo].[Products](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Register_Employee]    Script Date: 26/12/2014 16:05:20 ******/
+/****** Object:  Table [dbo].[Register_Employee]    Script Date: 4/01/2015 17:05:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -122,7 +123,7 @@ CREATE TABLE [dbo].[Register_Employee](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Registers]    Script Date: 26/12/2014 16:05:20 ******/
+/****** Object:  Table [dbo].[Registers]    Script Date: 4/01/2015 17:05:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -138,13 +139,13 @@ CREATE TABLE [dbo].[Registers](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Sales]    Script Date: 26/12/2014 16:05:20 ******/
+/****** Object:  Table [dbo].[Sales]    Script Date: 4/01/2015 17:05:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Sales](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[TimeStamp] [int] NULL,
 	[CustomerId] [int] NULL,
 	[RegisterId] [int] NULL,
